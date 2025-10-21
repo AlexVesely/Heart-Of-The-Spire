@@ -52,5 +52,7 @@ class CardTableSeeder extends Seeder
         $e->type = "Attack";
         $e->class = "Colourless";
         $e->save();
+
+        Card::factory()->count(20)->create();
     }
 }

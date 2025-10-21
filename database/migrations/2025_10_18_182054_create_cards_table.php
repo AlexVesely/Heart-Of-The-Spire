@@ -7,8 +7,6 @@ use Illuminate\Support\Facades\Schema;
 return new class extends Migration
 {
 
-    // CHANGE SO THAT IT IS ENUMS LATER FOR RARITY, TYPE AND CLASS
-
     /**
      * Run the migrations.
      */
@@ -33,3 +31,12 @@ return new class extends Migration
         Schema::dropIfExists('cards');
     }
 };
+
+
+// $table->id();
+//             $table->string('name');
+//             $table->integer('energy_cost');
+//             $table->enum('rarity', ['starter', 'common', 'uncommon', 'rare']);
+//             $table->enum('type', ['attack','skill','power']);
+//             $table->enum('class', ['ironclad','silent','defect','watcher','neutral']);
+//             $table->timestamps();
