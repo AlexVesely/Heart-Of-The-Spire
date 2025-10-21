@@ -16,9 +16,9 @@ return new class extends Migration
             $table->id();
             $table->string('name');
             $table->integer('energy_cost');
-            $table->string('rarity');
-            $table->string('type');
-            $table->string('class');
+            $table->enum('rarity', ['starter', 'common', 'uncommon', 'rare']);
+            $table->enum('type', ['attack','skill','power']);
+            $table->enum('class', ['ironclad','silent','defect','watcher','neutral']);
             $table->timestamps();
         });
     }
@@ -31,12 +31,3 @@ return new class extends Migration
         Schema::dropIfExists('cards');
     }
 };
-
-
-// $table->id();
-//             $table->string('name');
-//             $table->integer('energy_cost');
-//             $table->enum('rarity', ['starter', 'common', 'uncommon', 'rare']);
-//             $table->enum('type', ['attack','skill','power']);
-//             $table->enum('class', ['ironclad','silent','defect','watcher','neutral']);
-//             $table->timestamps();

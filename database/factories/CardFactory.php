@@ -17,15 +17,11 @@ class CardFactory extends Factory
     public function definition(): array
     {
         return [
-            'name' => fake()->name(),
+            'name' => fake()->word,
             'energy_cost' => fake()->numberBetween(0, 3),
-            'rarity' => fake()->name(),
-            'type'  => fake()->name(),
-            'class'  => fake()->name(),
+            'rarity' => fake()->randomElement(['starter', 'common', 'uncommon', 'rare']),
+            'type'  => fake()->randomElement(['attack','skill','power']),
+            'class'  => fake()->randomElement(['ironclad','silent','defect','watcher','neutral']),
         ];
     }
 }
-
-
-
-
