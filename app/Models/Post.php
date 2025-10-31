@@ -14,6 +14,6 @@ class Post extends Model
 
     public function cards()
     {
-        return $this->belongsToMany(Card::class, 'card_post');
+        return $this->belongsToMany(Card::class);
     }
 }
