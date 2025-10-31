@@ -13,6 +13,7 @@ return new class extends Migration
     {
         Schema::create('profiles', function (Blueprint $table) {
             $table->id();
+            $table->string('profile_name');
             $table->boolean('is_admin');
             $table->text('bio');
             $table->enum('fav_class', ['ironclad','silent','defect','watcher','neutral']);
