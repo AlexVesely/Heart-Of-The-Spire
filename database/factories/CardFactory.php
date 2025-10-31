@@ -21,7 +21,7 @@ class CardFactory extends Factory
             'energy_cost' => fake()->numberBetween(0, 3),
             'rarity' => fake()->randomElement(['starter', 'common', 'uncommon', 'rare']),
             'type'  => fake()->randomElement(['attack','skill','power']),
-            'class'  => fake()->randomElement(['ironclad','silent','defect','watcher','neutral']),
+            'class'  => fake()->randomElement(['ironclad','silent','defect','watcher']),
         ];
     }
 }

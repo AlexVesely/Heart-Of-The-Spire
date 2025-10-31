@@ -14,19 +14,19 @@ class CardTableSeeder extends Seeder
     public function run(): void
     {
         $a = new Card;
-        $a->name = "Anger";
+        $a->name = "anger";
         $a->energy_cost = 0;
-        $a->rarity = 'Common';
-        $a->type = 'Attack';
-        $a->class = 'Ironclad';
+        $a->rarity = 'common';
+        $a->type = 'attack';
+        $a->class = 'ironclad';
         $a->save();
 
         $b = new Card;
-        $b->name = "Backstab";
+        $b->name = "backstab";
         $b->energy_cost = 0;
-        $b->rarity = 'Uncommon';
-        $b->type = 'Attack';
-        $b->class = 'Silent';
+        $b->rarity = 'uncommon';
+        $b->type = 'attack';
+        $b->class = 'silent';
         $b->save();
 
         Card::factory()->count(20)->create();

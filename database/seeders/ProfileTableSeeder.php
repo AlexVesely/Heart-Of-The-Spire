@@ -36,5 +36,7 @@ class ProfileTableSeeder extends Seeder
         $c->fav_class = 'defect';
         $c->user_id = 3;
         $c->save();
+
+        Profile::factory()->count(10)->create();
     }
 }
