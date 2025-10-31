@@ -29,6 +29,6 @@ class CardTableSeeder extends Seeder
         $b->class = 'silent';
         $b->save();
 
-        Card::factory()->count(20)->create();
+        Card::factory()->count(10)->create();
     }
 }

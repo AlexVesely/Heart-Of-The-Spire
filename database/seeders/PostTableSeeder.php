@@ -32,5 +32,7 @@ class PostTableSeeder extends Seeder
         $c->content = "I am not a bad player, this card just is not synergysing with anything.";
         $c->profile_id = 2;
         $c->save();
+
+        Post::factory()->count(10)->create();
     }
 }
