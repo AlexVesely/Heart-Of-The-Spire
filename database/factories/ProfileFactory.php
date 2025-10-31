@@ -17,7 +17,10 @@ class ProfileFactory extends Factory
     public function definition(): array
     {
         return [
-            //
+            'name' => fake()->name(),
+            'is_admin' => fake()->boolean(),
+            'bio' => fake()->realText(500),
+            'fav_class' => fake()->randomElement(['ironclad','silent','defect','watcher','neutral']),
         ];
     }
 }

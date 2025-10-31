@@ -16,7 +16,7 @@ return new class extends Migration
             $table->string('profile_name');
             $table->boolean('is_admin');
             $table->text('bio');
-            $table->enum('fav_class', ['ironclad','silent','defect','watcher','neutral']);
+            $table->enum('fav_class', ['ironclad','silent','defect','watcher']);
             $table->bigInteger('user_id')->unsigned();
             $table->timestamps();
 

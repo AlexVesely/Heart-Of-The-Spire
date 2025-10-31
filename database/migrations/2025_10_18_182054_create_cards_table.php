@@ -18,7 +18,7 @@ return new class extends Migration
             $table->integer('energy_cost');
             $table->enum('rarity', ['starter', 'common', 'uncommon', 'rare']);
             $table->enum('type', ['attack','skill','power']);
-            $table->enum('class', ['ironclad','silent','defect','watcher','neutral']);
+            $table->enum('class', ['ironclad','silent','defect','watcher']);
             $table->timestamps();
         });
     }
