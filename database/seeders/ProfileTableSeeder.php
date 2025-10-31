@@ -26,5 +26,12 @@ class ProfileTableSeeder extends Seeder
         $b->fav_class = 'silent';
         $b->user_id = 2;
         $b->save();
+
+        $c = new Profile;
+        $c->is_admin = False;
+        $c->bio = "I only play Defect";
+        $c->fav_class = 'defect';
+        $c->user_id = 3;
+        $c->save();
     }
 }

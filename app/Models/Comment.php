@@ -7,5 +7,13 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Comment extends Model
 {
-    //
+    public function profile()
+    {
+        return $this->belongsTo(Profile::class);
+    }
+
+    public function post()
+    {
+        return $this->belongsTo(Post::class);
+    }
 }

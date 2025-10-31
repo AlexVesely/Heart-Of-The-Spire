@@ -16,4 +16,9 @@ class Post extends Model
     {
         return $this->belongsToMany(Card::class);
     }
+
+    public function comments()
+    {
+        return $this->hasMany(Comment::class);
+    }
 }
