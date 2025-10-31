@@ -16,6 +16,6 @@ class Profile extends Model
 
     public function post()
     {
-        return $this->hasMany(Animal::class);
+        return $this->hasMany(Post::class);
     }
 }
