@@ -22,7 +22,7 @@ class ProfileTableSeeder extends Seeder
 
         $b = new Profile;
         $b->is_admin = False;
-        $b->bio = "I am bob";
+        $b->bio = "I am Leo, I love STS";
         $b->fav_class = 'silent';
         $b->user_id = 2;
         $b->save();
