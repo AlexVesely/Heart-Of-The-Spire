@@ -11,4 +11,9 @@ class Post extends Model
     {
         return $this->belongsTo(Profile::class);
     }
+
+    public function cards()
+    {
+        return $this->belongsToMany(Card::class, 'card_post');
+    }
 }
