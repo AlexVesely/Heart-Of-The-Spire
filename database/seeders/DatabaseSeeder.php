@@ -13,9 +13,11 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
+        $this->call(CardTableSeeder::class);
         $this->call(UserTableSeeder::class);
         $this->call(ProfileTableSeeder::class);
-        Post::factory()->count(10)->hasAttached(Card::factory()->count(2))->create();
+        $this->call(PostTableSeeder::class);
         $this->call(CommentTableSeeder::class);
+        Post::factory()->count(10)->hasAttached(Card::factory()->count(2))->create();
     }
 }

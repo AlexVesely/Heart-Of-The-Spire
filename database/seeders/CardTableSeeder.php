@@ -22,10 +22,10 @@ class CardTableSeeder extends Seeder
         $a->save();
 
         $b = new Card;
-        $b->name = "backstab";
+        $b->name = "footwork";
         $b->energy_cost = 0;
         $b->rarity = 'uncommon';
-        $b->type = 'attack';
+        $b->type = 'power';
         $b->class = 'silent';
         $b->save();
 

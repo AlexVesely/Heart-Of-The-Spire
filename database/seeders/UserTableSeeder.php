@@ -15,20 +15,20 @@ class UserTableSeeder extends Seeder
     
     {
         $a = new User;
-        $a->name = "Alex Vesely";
-        $a->email = "AV@example.com";
+        $a->name = "Archelaos Dev";
+        $a->email = "AD@example.com";
         $a->password = "1234";
         $a->save();
 
         $b = new User;
-        $b->name = "Leo Vesely";
-        $b->email = "LV@example.com";
+        $b->name = "Iris Arlet";
+        $b->email = "IA@example.com";
         $b->password = "4567";
         $b->save();
 
         $c = new User;
-        $c->name = "Tomas Vesely";
-        $c->email = "TV@example.com";
+        $c->name = "Erin Columbine";
+        $c->email = "EC@example.com";
         $c->password = "Secret!78";
         $c->save();
     }

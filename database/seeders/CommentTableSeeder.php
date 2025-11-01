@@ -14,15 +14,15 @@ class CommentTableSeeder extends Seeder
     public function run(): void
     {
         $a = new Comment;
-        $a->content = "Great post! I agree with you!";
+        $a->content = "Great post! I love those cards too!";
         $a->profile_id = 3;
         $a->post_id = 1;
         $a->save();
 
         $b = new Comment;
-        $b->content = "I disagree with you and don't think Bash is a very good card";
-        $b->profile_id = 2;
-        $b->post_id = 2;
+        $b->content = "Footwork is great in combination with block cards.";
+        $b->profile_id = 1;
+        $b->post_id = 3;
         $b->save();
 
         Comment::factory()->count(10)->create();

@@ -16,7 +16,7 @@ class ProfileTableSeeder extends Seeder
         $a = new Profile;
         $a->profile_name = "AV0211";
         $a->is_admin = True;
-        $a->bio = "Yoooo its me";
+        $a->bio = "Hiya, its me!";
         $a->fav_class = 'ironclad';
         $a->user_id = 1;
         $a->save();
@@ -32,7 +32,7 @@ class ProfileTableSeeder extends Seeder
         $c = new Profile;
         $c->profile_name = "DefectLover22";
         $c->is_admin = False;
-        $c->bio = "I only play Defect";
+        $c->bio = "Defect is my favourite class";
         $c->fav_class = 'defect';
         $c->user_id = 3;
         $c->save();
