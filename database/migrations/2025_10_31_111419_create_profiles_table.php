@@ -7,6 +7,8 @@ use Illuminate\Support\Facades\Schema;
 return new class extends Migration
 {
     /**
+     * Create 'profiles' table.
+     * 
      * Run the migrations.
      */
     public function up(): void
@@ -17,10 +19,12 @@ return new class extends Migration
             $table->boolean('is_admin');
             $table->text('bio');
             $table->enum('fav_class', ['ironclad','silent','defect','watcher']);
-            $table->bigInteger('user_id')->unsigned();
+            $table->bigInteger('user_id')->unsigned(); // FK to users table
             $table->timestamps();
 
-            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade')->onUpdate('cascade');
+            // Establist referential integrity in relationship
+            $table->foreign('user_id')->references('id')->on('users')->
+            onDelete('cascade')->onUpdate('cascade');
         });
     }
 

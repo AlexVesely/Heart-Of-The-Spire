@@ -7,6 +7,13 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 
+/**
+ * User Model
+ * 
+ * Represents a user of the application.
+ * This model comes with Laravel, but has been adjusted to have a
+ * relationship to the Profile model.
+ */
 class User extends Authenticatable
 {
     /** @use HasFactory<\Database\Factories\UserFactory> */
@@ -46,6 +53,11 @@ class User extends Authenticatable
         ];
     }
 
+    /**
+     * Get the profile associated with the user.
+     *
+     * One-to-One relationship: Each user has exactly one profile.
+     */
     public function profile()
     {
         return $this->hasOne(Profile::class);

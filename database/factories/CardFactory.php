@@ -5,6 +5,10 @@ namespace Database\Factories;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
+ * Class CardFactory
+ * 
+ * Generates fake realistic data for the Card model.
+ * 
  * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Card>
  */
 class CardFactory extends Factory
@@ -18,7 +22,7 @@ class CardFactory extends Factory
     {
         return [
             'name' => fake()->word,
-            'energy_cost' => fake()->numberBetween(0, 3),
+            'energy_cost' => fake()->numberBetween(0, 3), 
             'rarity' => fake()->randomElement(['starter', 'common', 'uncommon', 'rare']),
             'type'  => fake()->randomElement(['attack','skill','power']),
             'class'  => fake()->randomElement(['ironclad','silent','defect','watcher']),

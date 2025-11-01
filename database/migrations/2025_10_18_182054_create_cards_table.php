@@ -8,6 +8,8 @@ return new class extends Migration
 {
 
     /**
+     * Create 'cards' table.
+     * 
      * Run the migrations.
      */
     public function up(): void

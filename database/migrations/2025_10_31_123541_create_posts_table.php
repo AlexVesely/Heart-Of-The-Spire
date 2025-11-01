@@ -7,6 +7,8 @@ use Illuminate\Support\Facades\Schema;
 return new class extends Migration
 {
     /**
+     * Create 'posts' table.
+     * 
      * Run the migrations.
      */
     public function up(): void
@@ -16,9 +18,12 @@ return new class extends Migration
             $table->string('title');
             $table->text('content');
             
-            $table->bigInteger('profile_id')->unsigned();
+            $table->bigInteger('profile_id')->unsigned(); // FK to 'profiles' table
 
-            $table->foreign('profile_id')->references('id')->on('profiles')->onDelete('cascade')->onUpdate('cascade');
+
+            // Establish referential integrity in relationship
+            $table->foreign('profile_id')->references('id')->on('profiles')
+            ->onDelete('cascade')->onUpdate('cascade');
             $table->timestamps();
         });
     }

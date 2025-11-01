@@ -13,30 +13,31 @@ class ProfileTableSeeder extends Seeder
      */
     public function run(): void
     {
-        $a = new Profile;
-        $a->profile_name = "AV0211";
-        $a->is_admin = True;
-        $a->bio = "Hiya, its me!";
-        $a->fav_class = 'ironclad';
-        $a->user_id = 1;
-        $a->save();
+        $profile1 = new Profile;
+        $profile1->profile_name = "AV0211";
+        $profile1->is_admin = True;
+        $profile1->bio = "Hiya, its me!";
+        $profile1->fav_class = 'ironclad';
+        $profile1->user_id = 1; // Connect profile1 with user1
+        $profile1->save();
 
-        $b = new Profile;
-        $b->profile_name = "Slayer456";
-        $b->is_admin = False;
-        $b->bio = "I am Leo, I love STS";
-        $b->fav_class = 'silent';
-        $b->user_id = 2;
-        $b->save();
+        $profile2 = new Profile;
+        $profile2->profile_name = "Slayer456";
+        $profile2->is_admin = False;
+        $profile2->bio = "I am Leo, I love STS";
+        $profile2->fav_class = 'silent';
+        $profile2->user_id = 2; // Connect profile2 with user2
+        $profile2->save();
 
-        $c = new Profile;
-        $c->profile_name = "DefectLover22";
-        $c->is_admin = False;
-        $c->bio = "Defect is my favourite class";
-        $c->fav_class = 'defect';
-        $c->user_id = 3;
-        $c->save();
+        $profile3 = new Profile;
+        $profile3->profile_name = "DefectLover22";
+        $profile3->is_admin = False;
+        $profile3->bio = "Defect is my favourite class";
+        $profile3->fav_class = 'defect';
+        $profile3->user_id = 3; // Connect profile3 with user3
+        $profile3->save();
 
+        // Create 10 profiles for 'profiles' table
         Profile::factory()->count(10)->create();
     }
 }

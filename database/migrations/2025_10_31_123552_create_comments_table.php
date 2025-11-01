@@ -7,6 +7,8 @@ use Illuminate\Support\Facades\Schema;
 return new class extends Migration
 {
     /**
+     * Create 'comments' table.
+     * 
      * Run the migrations.
      */
     public function up(): void
@@ -15,11 +17,14 @@ return new class extends Migration
             $table->id();
             $table->text('content');
 
-            $table->bigInteger('profile_id')->unsigned();
-            $table->bigInteger('post_id')->unsigned();
+            $table->bigInteger('profile_id')->unsigned(); // FK to 'profiles' table
+            $table->bigInteger('post_id')->unsigned(); // FK to 'posts' table
 
-            $table->foreign('profile_id')->references('id')->on('profiles')->onDelete('cascade')->onUpdate('cascade');
-            $table->foreign('post_id')->references('id')->on('posts')->onDelete('cascade')->onUpdate('cascade');
+            // Establish referential integrity in relationships
+            $table->foreign('profile_id')->references('id')->on('profiles')
+            ->onDelete('cascade')->onUpdate('cascade');
+            $table->foreign('post_id')->references('id')->on('posts')
+            ->onDelete('cascade')->onUpdate('cascade');
 
             $table->timestamps();
         });

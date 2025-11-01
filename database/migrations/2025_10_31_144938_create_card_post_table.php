@@ -7,18 +7,23 @@ use Illuminate\Support\Facades\Schema;
 return new class extends Migration
 {
     /**
+     * Create 'card_post' pivot table.
+     * 
      * Run the migrations.
      */
     public function up(): void
     {
         Schema::create('card_post', function (Blueprint $table) {
             $table->primary(['card_id', 'post_id']);
-            $table->bigInteger('card_id')->unsigned();
-            $table->bigInteger('post_id')->unsigned();
+            $table->bigInteger('card_id')->unsigned(); // FK to 'cards' table
+            $table->bigInteger('post_id')->unsigned(); // FK to 'posts' table
             $table->timestamps();
 
-            $table->foreign('card_id')->references('id')->on('cards')->onDelete('cascade')->onUpdate('cascade');
-            $table->foreign('post_id')->references('id')->on('posts')->onDelete('cascade')->onUpdate('cascade');
+            // Establish referential integrity in relationships
+            $table->foreign('card_id')->references('id')->on('cards')
+            ->onDelete('cascade')->onUpdate('cascade');
+            $table->foreign('post_id')->references('id')->on('posts')
+            ->onDelete('cascade')->onUpdate('cascade');
         });
     }
 

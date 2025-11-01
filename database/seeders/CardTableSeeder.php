@@ -13,22 +13,23 @@ class CardTableSeeder extends Seeder
      */
     public function run(): void
     {
-        $a = new Card;
-        $a->name = "anger";
-        $a->energy_cost = 0;
-        $a->rarity = 'common';
-        $a->type = 'attack';
-        $a->class = 'ironclad';
-        $a->save();
+        $card1 = new Card;
+        $card1->name = "anger";
+        $card1->energy_cost = 0;
+        $card1->rarity = 'common';
+        $card1->type = 'attack';
+        $card1->class = 'ironclad';
+        $card1->save();
 
-        $b = new Card;
-        $b->name = "footwork";
-        $b->energy_cost = 0;
-        $b->rarity = 'uncommon';
-        $b->type = 'power';
-        $b->class = 'silent';
-        $b->save();
+        $card2 = new Card;
+        $card2->name = "footwork";
+        $card2->energy_cost = 0;
+        $card2->rarity = 'uncommon';
+        $card2->type = 'power';
+        $card2->class = 'silent';
+        $card2->save();
 
+        // Create 10 cards for 'cards' table
         Card::factory()->count(10)->create();
     }
 }

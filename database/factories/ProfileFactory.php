@@ -6,6 +6,10 @@ use Illuminate\Database\Eloquent\Factories\Factory;
 use App\Models\User;
 
 /**
+ * Class PostFactory
+ * 
+ * Generates fake realistic data for the Profile model.
+ * 
  * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Profile>
  */
 class ProfileFactory extends Factory
@@ -18,6 +22,7 @@ class ProfileFactory extends Factory
     public function definition(): array
     {
         return [
+            // Create a User to link to this Profile
             'user_id' => User::factory(),
             'profile_name' => fake()->userName(),
             'is_admin' => fake()->boolean(),
