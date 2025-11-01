@@ -11,13 +11,22 @@ use Illuminate\Notifications\Notifiable;
  * User Model
  * 
  * Represents a user of the application.
- * This model comes with Laravel, but has been adjusted to have a
- * relationship to the Profile model.
+ * This model comes with Laravel but has been adjusted to have a relationship to the Profile model.
  */
 class User extends Authenticatable
 {
     /** @use HasFactory<\Database\Factories\UserFactory> */
     use HasFactory, Notifiable;
+
+    /**
+     * Get the profile associated with the user.
+     *
+     * One-to-One relationship: Each user has exactly one profile.
+     */
+    public function profile()
+    {
+        return $this->hasOne(Profile::class);
+    }
 
     /**
      * The attributes that are mass assignable.
@@ -32,7 +41,6 @@ class User extends Authenticatable
 
     /**
      * The attributes that should be hidden for serialization.
-     *
      * @var list<string>
      */
     protected $hidden = [
@@ -42,7 +50,6 @@ class User extends Authenticatable
 
     /**
      * Get the attributes that should be cast.
-     *
      * @return array<string, string>
      */
     protected function casts(): array
@@ -52,15 +59,4 @@ class User extends Authenticatable
             'password' => 'hashed',
         ];
     }
-
-    /**
-     * Get the profile associated with the user.
-     *
-     * One-to-One relationship: Each user has exactly one profile.
-     */
-    public function profile()
-    {
-        return $this->hasOne(Profile::class);
-    }
-
 }
