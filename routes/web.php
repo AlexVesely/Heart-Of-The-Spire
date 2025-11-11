@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\CardController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -14,6 +15,8 @@ Route::get('/secret', function () {
 Route::get('/card', function() {
     return view('card');
 });
+
+Route::get('/cards', [CardController::class, 'index']);
 
 Route::get('/passdata/{test?}', function($test = null) {
     return view('passdata', ['test'=>$test]);
