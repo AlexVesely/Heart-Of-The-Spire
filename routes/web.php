@@ -15,6 +15,10 @@ Route::get('/card', function() {
     return view('card');
 });
 
+Route::get('/passdata/{test}', function($test) {
+    return view('passdata', ['test'=>$test]);
+});
+
 Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
