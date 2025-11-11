@@ -15,7 +15,7 @@ Route::get('/card', function() {
     return view('card');
 });
 
-Route::get('/passdata/{test}', function($test) {
+Route::get('/passdata/{test?}', function($test = null) {
     return view('passdata', ['test'=>$test]);
 });
 
