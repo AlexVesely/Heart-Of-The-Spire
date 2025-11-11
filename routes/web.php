@@ -11,6 +11,10 @@ Route::get('/secret', function () {
     return "Haha this is a secret";
 })->middleware(['auth']);
 
+Route::get('/card', function() {
+    return view('card');
+});
+
 Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
