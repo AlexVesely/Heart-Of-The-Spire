@@ -37,7 +37,8 @@ class CardController extends Controller
      */
     public function show(string $id)
     {
-        //
+        $card = Card::findOrFail($id);
+        return view('cards.show', ['card' => $card]);
     }
 
     /**

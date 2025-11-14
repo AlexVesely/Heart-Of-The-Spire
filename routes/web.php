@@ -18,6 +18,8 @@ Route::get('/card', function() {
 
 Route::get('/cards', [CardController::class, 'index']);
 
+Route::get('/cards/{id}', [CardController::class, 'show']);
+
 Route::get('/passdata/{test?}', function($test = null) {
     return view('passdata', ['test'=>$test]);
 });

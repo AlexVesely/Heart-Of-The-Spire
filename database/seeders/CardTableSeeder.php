@@ -23,7 +23,7 @@ class CardTableSeeder extends Seeder
 
         $card2 = new Card;
         $card2->name = "footwork";
-        $card2->energy_cost = 0;
+        $card2->energy_cost = 1;
         $card2->rarity = 'uncommon';
         $card2->type = 'power';
         $card2->class = 'silent';
