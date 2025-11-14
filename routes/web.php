@@ -16,9 +16,9 @@ Route::get('/card', function() {
     return view('card');
 });
 
-Route::get('/cards', [CardController::class, 'index']);
+Route::get('/cards', [CardController::class, 'index'])->name('cards.index');
 
-Route::get('/cards/{id}', [CardController::class, 'show']);
+Route::get('/cards/{id}', [CardController::class, 'show'])->name('cards.show');
 
 Route::get('/passdata/{test?}', function($test = null) {
     return view('passdata', ['test'=>$test]);

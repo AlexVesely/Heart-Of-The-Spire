@@ -6,7 +6,7 @@
     <p>The cards in Slay the Spire:</p>
     <ul>
         @foreach ($cards as $card)
-            <li>{{$card->name}}</li>
+            <li><a href="{{ route('cards.show', ['id' => $card->id]) }}">{{$card->name}}</a></li>
         @endforeach
     </ul>
 @endsection
