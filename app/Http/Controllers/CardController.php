@@ -37,7 +37,16 @@ class CardController extends Controller
             'class' => 'required',
         ]);
 
-        return "Passed Validation";
+        $a = new Card;
+        $a->name = $validatedData['name'];
+        $a->energy_cost = $validatedData['energy_cost'];
+        $a->rarity = $validatedData['rarity'];
+        $a->type = $validatedData['type'];
+        $a->class = $validatedData['class'];
+        $a->save();
+
+        session()->flash('message', 'Card was created!');
+        return redirect()->route('cards.index');
     }
 
     /**
