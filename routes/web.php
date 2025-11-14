@@ -12,17 +12,21 @@ Route::get('/secret', function () {
     return "Haha this is a secret";
 })->middleware(['auth']);
 
+Route::get('/passdata/{test?}', function($test = null) {
+    return view('passdata', ['test'=>$test]);
+});
+
 Route::get('/card', function() {
     return view('card');
 });
 
 Route::get('/cards', [CardController::class, 'index'])->name('cards.index');
 
-Route::get('/cards/{id}', [CardController::class, 'show'])->name('cards.show');
+Route::get('/cards/create', [CardController::class, 'create'])->name('cards.create');
 
-Route::get('/passdata/{test?}', function($test = null) {
-    return view('passdata', ['test'=>$test]);
-});
+Route::post('/cards', [CardController::class, 'store'])->name('cards.store');
+
+Route::get('/cards/{id}', [CardController::class, 'show'])->name('cards.show');
 
 Route::get('/dashboard', function () {
     return view('dashboard');

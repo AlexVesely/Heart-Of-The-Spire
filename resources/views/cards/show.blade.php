@@ -10,4 +10,6 @@
         <li>Type: {{ $card->type}}</li>
         <li>Class: {{ $card->class}}</li>
     </ul>
+
+    <a href="{{route('cards.index')}}">GO BACK</a>
 @endsection        

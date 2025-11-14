@@ -9,4 +9,7 @@
             <li><a href="{{ route('cards.show', ['id' => $card->id]) }}">{{$card->name}}</a></li>
         @endforeach
     </ul>
+
+    <a href="{{ route('cards.create')}}">Create Card</a>
+
 @endsection
