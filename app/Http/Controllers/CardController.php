@@ -21,7 +21,7 @@ class CardController extends Controller
      */
     public function create()
     {
-        //
+        return view('cards.create');
     }
 
     /**
@@ -29,7 +29,15 @@ class CardController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validatedData = $request->validate([
+            'name' => 'required|max:255',
+            'energy_cost' => 'required|numeric',
+            'rarity' => 'required',
+            'type' => 'required',
+            'class' => 'required',
+        ]);
+
+        return "Passed Validation";
     }
 
     /**
