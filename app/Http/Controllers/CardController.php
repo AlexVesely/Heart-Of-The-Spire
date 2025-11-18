@@ -79,6 +79,10 @@ class CardController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        $card = Card::findOrFail($id);
+        $card->delete();
+
+        session()->flash('message', 'Card was deleted');
+        return redirect()->route('cards.index');
     }
 }

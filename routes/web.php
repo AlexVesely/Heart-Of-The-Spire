@@ -28,6 +28,8 @@ Route::post('/cards', [CardController::class, 'store'])->name('cards.store');
 
 Route::get('/cards/{id}', [CardController::class, 'show'])->name('cards.show');
 
+Route::delete('/cards/{id}', [CardController::class, 'destroy'])->name('cards.destroy');
+
 Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');

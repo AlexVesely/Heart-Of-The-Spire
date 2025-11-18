@@ -11,5 +11,12 @@
         <li>Class: {{ $card->class}}</li>
     </ul>
 
+    <form method="POST"
+        action="{{ route('cards.destroy', ['id' => $card->id]) }}">
+        @csrf
+        @method('DELETE')
+        <button type="submit">Delete</button>
+    </form>
+
     <a href="{{route('cards.index')}}">GO BACK</a>
 @endsection        
