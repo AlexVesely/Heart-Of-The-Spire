@@ -1,8 +1,9 @@
 <html>
     <head>
         <title>@yield('title')</title>
+        @vite('resources/css/app.css')
     </head>
-    <body>
+    <body class ="bg-gray-500 min-h-screen flex flex-col items-center justify-center p-4">
         <h1>Heart of the Spire: @yield('title')</h1>
 
         @if ($errors->any())
