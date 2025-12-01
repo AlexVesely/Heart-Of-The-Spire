@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\CardController;
+use App\Http\Controllers\PostController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -15,6 +16,12 @@ Route::middleware('auth','verified')->group(function () {
     Route::post('/cards', [CardController::class, 'store'])->name('cards.store');
     Route::get('/cards/{id}', [CardController::class, 'show'])->name('cards.show');
     Route::delete('/cards/{id}', [CardController::class, 'destroy'])->name('cards.destroy');
+
+});
+
+Route::middleware('auth','verified')->group(function () {
+
+    Route::get('/posts', [PostController::class, 'index'])->name('posts.index');
 
 });
 
