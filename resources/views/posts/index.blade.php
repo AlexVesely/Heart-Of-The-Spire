@@ -1,21 +1,26 @@
 <x-app-layout>
     <x-slot name="header">
-        <h2 class="text-white">
-            Posts
+        <h2 class="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight">
+            {{ __('Posts') }}
         </h2>
     </x-slot>
 
     <div class="py-12">
-        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
+        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8 space-y-6">
             <div class="bg-white shadow-sm sm:rounded-lg p-6">
-                <p>Community Created Posts:</p>
-
                 <ul>
                     @foreach ($posts as $post)
-                        <li>
-                            <a href="{{ route('posts.show', $post->id) }}">
+                        <li class="border-b">
+                            <a href="{{ route('posts.show', $post->id) }}" class="font-semibold hover:underline text-lg">
                                 {{ $post->title }}
                             </a>
+                            <p class="text-gray-600 mt-1">
+                                <!--Shows first 50 characters and then ... -->>
+                                {{ Str::limit($post->content, 50) }}
+                            </p>
+                            <p class="text-gray-500 text-sm mt-1">
+                                Posted by: <span class="font-medium">{{ $post->profile->profile_name ?? 'Unknown' }}</span>
+                            </p>
                         </li>
                     @endforeach
                 </ul>
