@@ -23,6 +23,9 @@ Route::middleware('auth','verified')->group(function () {
 
     Route::get('/posts', [PostController::class, 'index'])->name('posts.index');
 
+
+    Route::get('/posts/{id}', [PostController::class, 'show'])->name('posts.show');
+
 });
 
 Route::get('/dashboard', function () {

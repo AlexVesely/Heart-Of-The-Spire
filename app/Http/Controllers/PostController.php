@@ -37,7 +37,9 @@ class PostController extends Controller
      */
     public function show(string $id)
     {
-        //
+        // Fetch the post with its profile in one query
+        $post = Post::findOrFail($id);
+        return view('posts.show', ['post' => $post]);
     }
 
     /**
