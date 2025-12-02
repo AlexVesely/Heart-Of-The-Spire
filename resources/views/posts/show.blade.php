@@ -16,8 +16,11 @@
 
                 <p class="text-gray-700 mb-2">
                     <span class="font-semibold">Author:</span>
-                    {{ $post->profile->profile_name ?? 'Unknown' }}
+                    <a href="{{ route('profiles.show', $post->profile->id) }}" class="text-blue-600 hover:underline">
+                        {{ $post->profile->profile_name ?? 'Unknown' }}
+                    </a>
                 </p>
+
 
                 <p class="text-gray-700 mb-6">
                     {{ $post->content }}
@@ -38,7 +41,9 @@
                             <li class="border-b pb-3">
                                 <!-- Comment author -->
                                 <p class="font-semibold text-lg">
-                                    {{ $comment->profile->profile_name ?? 'Unknown User' }}
+                                    <a href="{{ route('profiles.show', $comment->profile->id) }}" class="text-blue-600 hover:underline">
+                                        {{ $comment->profile->profile_name ?? 'Unknown' }}
+                                    </a>
                                 </p>
                                 <!-- Comment content -->
                                 <p class="text-gray-600 mt-1">

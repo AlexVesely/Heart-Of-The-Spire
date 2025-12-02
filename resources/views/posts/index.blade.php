@@ -19,8 +19,12 @@
                                 {{ Str::limit($post->content, 50) }}
                             </p>
                             <p class="text-gray-500 text-sm mt-1">
-                                Posted by: <span class="font-medium">{{ $post->profile->profile_name ?? 'Unknown' }}</span>
+                                Posted by: 
+                                <a href="{{ route('profiles.show', $post->profile->id) }}" class="font-medium text-blue-600 hover:underline">
+                                    {{ $post->profile->profile_name }}
+                                </a>
                             </p>
+
                         </li>
                     @endforeach
                 </ul>

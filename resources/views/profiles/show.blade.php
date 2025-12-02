@@ -59,9 +59,6 @@
                                 <p class="text-gray-600 mt-1">
                                     {{ Str::limit($post->content, 50) }}
                                 </p>
-                                <p class="text-gray-500 text-sm mt-1">
-                                    Posted by: <span class="font-medium">{{ $post->profile->profile_name ?? 'Unknown' }}</span>
-                                </p>
                             </li>
                         @endforeach
                     </ul>
