@@ -21,6 +21,10 @@
                     <x-nav-link :href="route('cards.index')" :active="request()->routeIs('cards.*')">
                         {{ __('Cards') }}
                     </x-nav-link>
+                    <!-- !!!!! MAYBE ADD AN ACTIVE -->
+                    <x-nav-link :href="route('profiles.show', Auth::user()->profile->id ?? 0)">
+                        {{ Auth::user()->profile->profile_name ?? 'My Profile' }}
+                    </x-nav-link>
                 </div>
             </div>
 
