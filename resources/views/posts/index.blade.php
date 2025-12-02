@@ -15,7 +15,7 @@
                                 {{ $post->title }}
                             </a>
                             <p class="text-gray-600 mt-1">
-                                <!--Shows first 50 characters and then ... -->>
+                                <!--Shows first 50 characters and then ... -->
                                 {{ Str::limit($post->content, 50) }}
                             </p>
                             <p class="text-gray-500 text-sm mt-1">

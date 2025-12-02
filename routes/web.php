@@ -28,6 +28,15 @@ Route::middleware('auth','verified')->group(function () {
 
 });
 
+Route::middleware('auth','verified')->group(function () {
+
+
+
+
+    Route::get('/profiles/{id}', [ProfileController::class, 'show'])->name('profiles.show');
+
+});
+
 Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');

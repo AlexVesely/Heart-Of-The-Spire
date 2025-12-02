@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Profile;
 use App\Http\Requests\ProfileUpdateRequest;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
@@ -57,4 +58,11 @@ class ProfileController extends Controller
 
         return Redirect::to('/');
     }
+
+    public function show(string $id)
+    {
+        $profile = Profile::findOrFail($id);
+        return view('profiles.show', ['profile' => $profile]);
+    }
+
 }
