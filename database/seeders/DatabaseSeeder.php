@@ -15,8 +15,12 @@ class DatabaseSeeder extends Seeder
     {
         // Seed core seeders first
         $this->call(CardTableSeeder::class);
+        
+        // Whenever Users are created a profile is created alongside
         $this->call(UserTableSeeder::class);
-        $this->call(ProfileTableSeeder::class);
+
+
+
         $this->call(PostTableSeeder::class);
         $this->call(CommentTableSeeder::class);
 

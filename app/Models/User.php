@@ -73,8 +73,8 @@ class User extends Authenticatable
                 'user_id' => $user->id, // Connect the new profile with this user
                 'profile_name' => fake()->userName(),
                 'is_admin' => false,
-                'bio' => '',
-                'fav_class' => 'ironclad', // default value
+                'bio' => fake()->realText(300),
+                'fav_class' => fake()->randomElement(['ironclad','silent','defect','watcher']), // default value
             ]);
         });
     }
