@@ -59,4 +59,24 @@ class User extends Authenticatable
             'password' => 'hashed',
         ];
     }
+
+    /**
+     * Automatically create a Profile whenever a new User is registered.
+     * Overrides eloquent's booted() method to automatically trigger this method when a new
+     * user is created.
+     */
+    protected static function booted()
+    {
+        // Runs this function right after a new User is added to the database.
+        static::created(function ($user) {
+            Profile::create([
+                'user_id' => $user->id, // Connect the new profile with this user
+                'profile_name' => fake()->userName(),
+                'is_admin' => false,
+                'bio' => '',
+                'fav_class' => 'ironclad', // default value
+            ]);
+        });
+    }
+
 }

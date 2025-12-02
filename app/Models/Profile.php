@@ -13,6 +13,15 @@ class Profile extends Model
 {
     use HasFactory;
 
+    // Allow these fields to be fillable (So that User booted() works)
+    protected $fillable = [
+        'user_id',
+        'profile_name',
+        'is_admin',
+        'bio',
+        'fav_class',
+    ];
+
     /**
      * Get the user whose profile this belong to.
      *

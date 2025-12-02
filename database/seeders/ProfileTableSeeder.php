@@ -14,7 +14,7 @@ class ProfileTableSeeder extends Seeder
     public function run(): void
     {
         $profile1 = new Profile;
-        $profile1->profile_name = "AV0211";
+        $profile1->profile_name = "AD0211";
         $profile1->is_admin = True;
         $profile1->bio = "Hiya, its me!";
         $profile1->fav_class = 'ironclad';
