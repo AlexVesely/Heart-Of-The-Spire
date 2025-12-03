@@ -14,6 +14,7 @@
                 <!-- Post Details -->
                 <h2 class="text-5xl font-bold mb-4">{{ $post->title }}</h2>
 
+                <!-- Post Author -->
                 <p class="text-gray-700 mb-2">
                     <span class="font-semibold">Author:</span>
                     <a href="{{ route('profiles.show', $post->profile->id) }}" class="text-blue-600 hover:underline">
@@ -21,7 +22,21 @@
                     </a>
                 </p>
 
+                <!-- Post's Cards -->
+                <p class="text-gray-700 mb-6">
+                    <span class="font-semibold">Cards:</span>
+                    @if($post->cards->isNotEmpty())
+                        @foreach($post->cards as $card)
+                            <a href="{{ route('cards.show', $card->id) }}" class="text-blue-600 hover:underline capitalize">
+                                {{ $card->name }}
+                            </a>
+                        @endforeach
+                    @else
+                        No cards are attached to this post
+                    @endif
+                </p>
 
+                <!-- Post's Content -->
                 <p class="text-gray-700 mb-6">
                     {{ $post->content }}
                 </p>
