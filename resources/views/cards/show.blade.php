@@ -7,9 +7,9 @@
 
     <div class="py-12">
         <div class="max-w-3xl mx-auto sm:px-6 lg:px-8 space-y-6">
-            <div class="bg-white sm:rounded-lg p-6 shadow">
 
-                <!-- Card Details -->
+            <!-- Card Details -->
+            <div class="bg-white sm:rounded-lg p-6 shadow">
                 <div class="space-y-2 text-gray-800 capitalize">
                     <p><span class="font-semibold">Name:</span> {{ $card->name }}</p>
                     <p><span class="font-semibold">Energy Cost:</span> {{ $card->energy_cost }}</p>
@@ -18,29 +18,61 @@
                     <p><span class="font-semibold">Class:</span> {{ $card->class }}</p>
                 </div>
 
-                <!-- Buttons -->
-                <div class="mt-6 flex flex-col items-start gap-3">
-
-                    <!-- Delete -->
-                    <form method="POST" action="{{ route('cards.destroy', $card->id) }}">
-                        @csrf
-                        @method('DELETE')
-                        <button
-                            type="submit"
-                            class="bg-red-600 text-white px-4 py-2 rounded hover:bg-red-700"
-                            onclick="return confirm('Are you sure?')">
-                            Delete
-                        </button>
-                    </form>
+            <!-- Buttons -->
+            <div class="mt-6 flex flex-col items-start gap-3">
+                <!-- Delete -->
+                <form method="POST" action="{{ route('cards.destroy', $card->id) }}">
+                    @csrf
+                    @method('DELETE')
+                    <button
+                        type="submit"
+                        class="bg-red-600 text-white px-4 py-2 rounded hover:bg-red-700"
+                        onclick="return confirm('Are you sure?')">
+                        Delete
+                    </button>
+                </form>
 
                     <!-- Back -->
                     <a href="{{ route('cards.index') }}"
-                    class="text-blue-600 hover:underline">
+                       class="text-blue-600 hover:underline">
                         ← Back to Cards
                     </a>
                 </div>
-                
             </div>
-        </div>
+
+            <!-- Posts Connected to This Card -->
+            <div class="bg-white sm:rounded-lg p-6 shadow">
+                <h3 class="text-3xl font-bold mb-4">Posts Featuring This Card</h3>
+
+                @if($card->posts->isNotEmpty())
+                    <ul>
+                        @foreach($card->posts as $post)
+                            <li class="border-b pb-3 mb-3">
+                                <!-- Post title -->
+                                <a href="{{ route('posts.show', $post->id) }}" class="font-semibold text-lg text-blue-600 hover:underline">
+                                    {{ $post->title }}
+                                </a>
+
+                                <!-- Post author -->
+                                <p class="text-gray-500 text-sm mt-1">
+                                    Posted by: 
+                                    <a href="{{ route('profiles.show', $post->profile->id) }}" class="font-medium text-blue-600 hover:underline">
+                                        {{ $post->profile->profile_name }}
+                                    </a>
+                                </p>
+
+                                <!--Shows first 50 characters and then ... -->
+                                <p class="text-gray-600 mt-1">
+                                    {{ Str::limit($post->content, 50) }}
+                                </p>
+                            </li>
+                        @endforeach
+                    </ul>
+                @else
+                    <p class="text-gray-600">No posts are connected to this card yet</p>
+                @endif
+            </div>
+
+           
     </div>
 </x-app-layout>
