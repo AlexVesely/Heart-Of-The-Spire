@@ -31,16 +31,15 @@ class CommentController extends Controller
     {
         $userProfile = Auth::user()->profile;
 
-
         $validatedData = $request->validate([
-            'post_id' => 'required|exists:posts,id',
+            'comment_id' => 'required|exists:comments,id',
             'content' => 'required|max:1000',
         ]);
 
         $a = new Comment;
-        $a->post_id = $validatedData['post_id'];
+        $a->comment_id = $validatedData['comment_id'];
         $a->content = $validatedData['content'];
-        $a->profile_id = $userProfile->id;
+        $a->profile_id = $userProfile->id; // attach logged in user's profile to comment
         $a->save();
 
         session()->flash('message', 'Comment was added!');
@@ -60,22 +59,54 @@ class CommentController extends Controller
      */
     public function edit(string $id)
     {
-        //
-    }
+        $comment = Comment::findOrFail($id);
+        $userProfile = Auth::user()->profile;
 
+        // Check if user logged in has permission to edit this comment
+        if ($comment->profile_id !== $userProfile->id && $userProfile->is_admin) {
+            abort(403, 'Unauthorized action.');
+        }
+
+        return view('comments.edit', compact('comment'));
+    }
     /**
      * Update the specified resource in storage.
      */
     public function update(Request $request, string $id)
     {
-        //
+        $comment = Comment::findOrFail($id);
+        $userProfile = Auth::user()->profile;
+
+
+        if ($comment->profile_id !== $userProfile->id && !$userProfile->is_admin) {
+            abort(403, 'Unauthorized action.');
+        }
+
+        $validated = $request->validate([
+            'content' => 'required|max:500',
+        ]);
+
+        $comment->update($validated);
+
+        return redirect()->route('posts.show', $comment->post_id)
+                        ->with('message', 'Comment updated!');
     }
+
 
     /**
      * Remove the specified resource from storage.
      */
     public function destroy(string $id)
     {
-        //
+        $comment = Comment::findOrFail($id);
+        $userProfile = Auth::user()->profile;
+
+        if ($comment->profile_id !== $userProfile->id && !$userProfile->is_admin) {
+            abort(403, 'Unauthorized action.');
+        }
+
+        $comment->delete();
+
+        return redirect()->back()->with('message', 'Comment deleted!');
     }
 }

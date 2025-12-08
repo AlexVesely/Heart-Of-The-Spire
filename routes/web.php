@@ -42,6 +42,13 @@ Route::middleware('auth','verified')->group(function () {
 
 Route::middleware('auth','verified')->group(function () {
     Route::post('/comments', [CommentController::class, 'store'])->name('comments.store');
+    Route::delete('/comments/{comment}', [CommentController::class, 'destroy'])->name('comments.destroy');
+
+    // Show the edit form
+    Route::get('/comments/{comment}/edit', [CommentController::class, 'edit'])->name('comments.edit');
+
+    // Handle the form submission to update the post
+    Route::put('/comments/{comment}', [CommentController::class, 'update'])->name('comments.update');
 });
 
 Route::get('/dashboard', function () {

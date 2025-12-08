@@ -77,16 +77,42 @@
                     <ul>
                         @foreach ($post->comments as $comment)
                             <li class="border-b pb-3">
-                                <!-- Comment author -->
+
+                                <!-- Author -->
                                 <p class="font-semibold text-lg">
                                     <a href="{{ route('profiles.show', $comment->profile->id) }}" class="text-blue-600 hover:underline">
-                                        {{ $comment->profile->profile_name ?? 'Unknown' }}
+                                        {{ $comment->profile->profile_name }}
                                     </a>
                                 </p>
-                                <!-- Comment content -->
+
+                                <!-- Content -->
                                 <p class="text-gray-600 mt-1">
-                                    {{ $comment->content}}
+                                    {{ $comment->content }}
                                 </p>
+
+                                <!-- Edit/Delete Buttons -->
+                                @if ($comment->profile_id == Auth::user()->profile->id || Auth::user()->profile->is_admin)
+                                    <div class="mt-2 flex gap-3">
+
+                                        <!-- Edit -->
+                                        <a href="{{ route('comments.edit', $comment->id) }}"
+                                        class="text-yellow-600 hover:underline">
+                                            Edit
+                                        </a>
+
+                                        <!-- Delete -->
+                                        <form method="POST" action="{{ route('comments.destroy', $comment->id) }}">
+                                            @csrf
+                                            @method('DELETE')
+                                            <button class="text-red-600 hover:underline"
+                                                onclick="return confirm('Delete this comment?')">
+                                                Delete
+                                            </button>
+                                        </form>
+
+                                    </div>
+                                @endif
+
                             </li>
                         @endforeach
                     </ul>

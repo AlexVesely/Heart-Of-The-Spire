@@ -30,6 +30,8 @@ class PostController extends Controller
      */
     public function store(Request $request)
     {
+        $userProfile = Auth::user()->profile;
+
         $validatedData = $request->validate([
             'title' => 'required|max:255',
             'content' => 'required|max:1000',
@@ -38,7 +40,7 @@ class PostController extends Controller
         $a = new Post;
         $a->title = $validatedData['title'];
         $a->content = $validatedData['content'];
-        $a->profile_id = Auth::user()->profile->id;  // attach logged in user's profile
+        $a->profile_id = $userProfile->id;  // attach logged in user's profile to post
         $a->save();
 
         session()->flash('message', 'Post was created!');
