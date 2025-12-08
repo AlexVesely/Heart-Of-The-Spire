@@ -9,7 +9,16 @@
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 text-gray-900 dark:text-gray-100">
-                    {{ __("You're logged in!") }}
+                    {{ __("Welcome to Heart of the Spire!") }}
+
+                    <!-- Create Post Button -->
+                    <div class="mt-4">
+                        <a href="{{ route('posts.create') }}"
+                            class="inline-block bg-blue-600 hover:bg-blue-700 text-white font-semibold px-4 py-2 rounded-lg">
+                            Create a New Post
+                        </a>
+                    </div>
+
                 </div>
             </div>
         </div>
