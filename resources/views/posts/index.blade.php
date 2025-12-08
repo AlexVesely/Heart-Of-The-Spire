@@ -10,7 +10,7 @@
             <div class="bg-white shadow-sm sm:rounded-lg p-6">
                 <ul>
                     @foreach ($posts as $post)
-                        <li class="border-b">
+                        <li class="border-b mb-4 pb-4">
                             <a href="{{ route('posts.show', $post->id) }}" class="font-semibold hover:underline text-lg">
                                 {{ $post->title }}
                             </a>
@@ -28,6 +28,11 @@
                         </li>
                     @endforeach
                 </ul>
+
+                <!-- Pagination Links -->
+                <div class="mt-6">
+                    {{ $posts->links() }}
+                </div>
             </div>
         </div>
     </div>

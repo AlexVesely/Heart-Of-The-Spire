@@ -12,7 +12,7 @@ class CardController extends Controller
      */
     public function index()
     {
-        $cards = Card::all();
+        $cards = Card::paginate(10);
         return view('cards.index', ['cards' => $cards]);
     }
 

@@ -35,6 +35,6 @@ class PostTableSeeder extends Seeder
         $post3->cards()->attach(2); // attach card1 to post3
 
         // Create 10 posts for 'posts' table
-        Post::factory()->count(10)->create();
+        Post::factory()->count(50)->create();
     }
 }

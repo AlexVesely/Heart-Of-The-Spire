@@ -6,7 +6,7 @@
     </x-slot>
 
     <div class="py-12">
-        <div class="max-w-3xl mx-auto sm:px-6 lg:px-8 space-y-6">
+        <div class="max-w-5xl mx-auto sm:px-6 lg:px-8 space-y-6">
             <div class="bg-white sm:rounded-lg p-6">
 
                 <ul class="space-y-4">
@@ -62,6 +62,11 @@
                 <a href="{{ route('cards.create') }}" class="inline-block mt-4 text-green-600 hover:text-green-800 font-medium">
                     Create Card
                 </a>
+                
+                <!-- Pagination Links -->
+                <div class="mt-6">
+                    {{ $cards->links() }}
+                </div>
             </div>
         </div>
     </div>

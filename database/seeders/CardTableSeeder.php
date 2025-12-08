@@ -30,6 +30,6 @@ class CardTableSeeder extends Seeder
         $card2->save();
 
         // Create 10 cards for 'cards' table
-        Card::factory()->count(10)->create();
+        Card::factory()->count(50)->create();
     }
 }
