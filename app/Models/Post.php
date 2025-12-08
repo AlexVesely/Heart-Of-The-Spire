@@ -12,6 +12,13 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 class Post extends Model
 {
     use HasFactory;
+
+    // ALlows Posts to be edited
+    protected $fillable = [
+    'title',
+    'content',
+    ];
+
     
     /**
      * Get the profile that created this post.

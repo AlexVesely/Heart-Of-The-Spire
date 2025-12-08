@@ -43,9 +43,17 @@
 
                 <!-- Back -->
                 <a href="{{ route('posts.index') }}"
-                class="text-blue-600 hover:underline">
+                class="text-blue-600 hover:underline block mb-4">
                     ← Back to Posts
                 </a>
+
+                <!-- Edit -->
+                @if($post->profile_id == Auth::user()->profile->id || Auth::user()->profile->is_admin)
+                    <a href="{{ route('posts.edit', $post->id) }}"
+                    class="block w-fit bg-yellow-500 text-white px-4 py-2 rounded hover:bg-yellow-600 mb-4">
+                        Edit
+                    </a>
+                @endif
 
                 <!-- Delete -->
                 @if($post->profile_id == Auth::user()->profile->id || Auth::user()->profile->is_admin)

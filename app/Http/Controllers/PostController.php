@@ -61,7 +61,15 @@ class PostController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        $post = Post::findOrFail($id);
+        $userProfile = Auth::user()->profile;
+
+        // Check if user logged in has permission to edit this post
+        if ($post->profile_id !== $userProfile->id && !$userProfile->is_admin) {
+            abort(403, 'Unauthorized action.');
+        }
+
+        return view('posts.edit', compact('post'));
     }
 
     /**
@@ -69,7 +77,24 @@ class PostController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+         $post = Post::findOrFail($id);
+         $userProfile = Auth::user()->profile;
+
+
+        // Check if user logged in has permission to edit this post
+        if ($post->profile_id !== $userProfile->id && !$userProfile->is_admin) {
+            abort(403, 'Unauthorized action.');
+        }
+
+        $validatedData = $request->validate([
+            'title' => 'required|max:255',
+            'content' => 'required|max:1000',
+        ]);
+
+        $post->update($validatedData);
+
+        session()->flash('message', 'Post updated successfully!');
+        return redirect()->route('posts.show', $post->id);
     }
 
     /**
