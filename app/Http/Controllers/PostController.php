@@ -45,8 +45,6 @@ class PostController extends Controller
         return redirect()->route('posts.index');
     }
 
-
-
     /**
      * Display the specified resource.
      */

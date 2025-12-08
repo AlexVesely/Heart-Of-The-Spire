@@ -3,6 +3,7 @@
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\CardController;
 use App\Http\Controllers\PostController;
+use App\Http\Controllers\CommentController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -35,12 +36,12 @@ Route::middleware('auth','verified')->group(function () {
 });
 
 Route::middleware('auth','verified')->group(function () {
-
-
-
-
     Route::get('/profiles/{id}', [ProfileController::class, 'show'])->name('profiles.show');
+});
 
+
+Route::middleware('auth','verified')->group(function () {
+    Route::post('/comments', [CommentController::class, 'store'])->name('comments.store');
 });
 
 Route::get('/dashboard', function () {

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Comment;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class CommentController extends Controller
 {
@@ -28,7 +29,22 @@ class CommentController extends Controller
      */
     public function store(Request $request)
     {
-        
+        $userProfile = Auth::user()->profile;
+
+
+        $validatedData = $request->validate([
+            'post_id' => 'required|exists:posts,id',
+            'content' => 'required|max:1000',
+        ]);
+
+        $a = new Comment;
+        $a->post_id = $validatedData['post_id'];
+        $a->content = $validatedData['content'];
+        $a->profile_id = $userProfile->id;
+        $a->save();
+
+        session()->flash('message', 'Comment was added!');
+        return redirect()->back();
     }
 
     /**

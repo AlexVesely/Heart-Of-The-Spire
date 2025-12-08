@@ -14,10 +14,7 @@ class Post extends Model
     use HasFactory;
 
     // ALlows Posts to be edited
-    protected $fillable = [
-    'title',
-    'content',
-    ];
+    protected $fillable = ['title','content'];
 
     
     /**

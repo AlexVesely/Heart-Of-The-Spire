@@ -12,7 +12,9 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 class Comment extends Model
 {
     use HasFactory;
-    
+
+    protected $fillable = ['content'];
+
     /**
      * Get the profile that created this comment.
      * 

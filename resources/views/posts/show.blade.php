@@ -90,6 +90,26 @@
                             </li>
                         @endforeach
                     </ul>
+
+            <!-- Comment Form -->
+            <div class="mt-6">
+                <form method="POST" action="{{ route('comments.store') }}">
+                    @csrf
+                    <!-- DO NOT SHOW THE POSTS ID TO THE USER, BUT THIS INFO IS-->
+                    <input type="hidden" name="post_id" value="{{ $post->id }}">
+
+                    <textarea name="content"
+                            class="w-full border rounded p-2 resize-none"
+                            placeholder="Write a comment..."
+                            required></textarea>
+
+                    <button type="submit"
+                        class="mt-2 bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700">
+                        Post Comment
+                    </button>
+                </form>
+            </div>
+
             </div>
         </div>
     </div>
