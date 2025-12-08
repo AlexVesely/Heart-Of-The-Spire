@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Post;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class PostController extends Controller
 {
@@ -25,12 +26,26 @@ class PostController extends Controller
     }
 
     /**
-     * Store a newly created resource in storage.
+     * Store a newly created post in storage.
      */
     public function store(Request $request)
     {
-        //
+        $validatedData = $request->validate([
+            'title' => 'required|max:255',
+            'content' => 'required|max:1000',
+        ]);
+
+        $a = new Post;
+        $a->title = $validatedData['title'];
+        $a->content = $validatedData['content'];
+        $a->profile_id = Auth::user()->profile->id;  // attach logged in user's profile
+        $a->save();
+
+        session()->flash('message', 'Post was created!');
+        return redirect()->route('posts.index');
     }
+
+
 
     /**
      * Display the specified resource.
