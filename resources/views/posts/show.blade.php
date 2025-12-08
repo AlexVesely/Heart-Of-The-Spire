@@ -46,6 +46,21 @@
                 class="text-blue-600 hover:underline">
                     ← Back to Posts
                 </a>
+
+                <!-- Delete -->
+                @if($post->profile_id == Auth::user()->profile->id || Auth::user()->profile->is_admin)
+                <form method="POST" action="{{ route('posts.destroy', $post->id) }}">
+                    @csrf
+                    @method('DELETE')
+                    <button
+                        type="submit"
+                        class="bg-red-600 text-white px-4 py-2 rounded hover:bg-red-700"
+                        onclick="return confirm('Are you sure?')">
+                        Delete
+                    </button>
+                </form>
+                @endif
+
             </div>
 
             <!-- Comments Section -->

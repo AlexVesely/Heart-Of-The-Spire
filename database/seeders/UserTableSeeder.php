@@ -20,6 +20,14 @@ class UserTableSeeder extends Seeder
         $user1->password = "1234";
         $user1->save();
 
+        // User1 is hardcoding into being an admin
+        $user1->profile()->update([
+            'profile_name' => 'AdminProfile',
+            'is_admin' => true,
+            'bio' => 'I am the admin.',
+            'fav_class' => 'ironclad', // default
+        ]);
+
         $user2 = new User;
         $user2->name = "Iris Arlet";
         $user2->email = "IA@example.com";

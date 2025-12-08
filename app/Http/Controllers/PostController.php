@@ -77,6 +77,21 @@ class PostController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        $post = Post::findOrFail($id);
+        $userProfile = Auth::user()->profile;
+
+        // Only allow deletion if:
+        // The user owns the post OR The user is admin
+        // This should not be needed anyone because if the user is not authorised 
+        // to delete they cannot see delete button
+        if ($post->profile_id !== $userProfile->id && !$userProfile->is_admin) {
+            abort(403, 'Unauthorized action.');
+        }
+
+        $post->delete();
+
+        session()->flash('message', 'Post was deleted');
+        return redirect()->route('posts.index');
     }
+
 }
