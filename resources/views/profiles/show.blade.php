@@ -6,10 +6,17 @@
     </x-slot>
 
     <div class="py-12">
-        <div class="max-w-3xl mx-auto sm:px-6 lg:px-8 space-y-6">
-            
+        <div class="max-w-5xl mx-auto sm:px-6 lg:px-8 space-y-6">
+
+            <!-- Flash Message -->
+            @if(session('message'))
+                <div class="p-4 bg-green-100 text-green-700 rounded-lg">
+                    {{ session('message') }}
+                </div>
+            @endif
+
             <!-- Profile Details -->
-            <div class="bg-white sm:rounded-lg p-6 shadow">
+            <div class="bg-white shadow-sm sm:rounded-lg p-6">
                 <div class="space-y-2 text-gray-800 capitalize">
                     <p><span class="font-semibold">Profile Name:</span> {{ $profile->profile_name }}</p>
                     <p><span class="font-semibold">Admin:</span> {{ $profile->is_admin ? 'Yes' : 'No' }}</p>
@@ -41,9 +48,58 @@
                         @endif
                     </p>
                 </div>
-            </div>
 
-            <!-- Profile's Posts -->
+                <!-- Edit Profile Form (only for the logged-in user) -->
+                @if(Auth::user()->profile->id === $profile->id)
+                    <div class="mt-6 border-t pt-4">
+                        <h4 class="font-semibold text-lg mb-4">Edit Your Profile</h4>
+
+                        {{-- Error Messages --}}
+                        @if ($errors->any())
+                            <div class="mb-4 p-4 bg-red-100 text-red-700 rounded-lg">
+                                <p class="font-bold">There were some problems:</p>
+                                <ul class="mt-2 list-disc list-inside">
+                                    @foreach ($errors->all() as $error)
+                                        <li>{{ $error }}</li>
+                                    @endforeach
+                                </ul>
+                            </div>
+                        @endif
+
+                        <form method="POST" action="{{ route('profiles.update', $profile->id) }}">
+                            @csrf
+                            @method('PUT')
+
+                            <!-- Bio -->
+                            <div class="mb-4">
+                                <label class="block text-sm font-medium text-gray-700">Bio</label>
+                                <textarea name="bio"
+                                          rows="3"
+                                          class="mt-1 block w-full rounded-md border-gray-300 p-2"
+                                          placeholder="Tell us a little about yourself">{{ old('bio', $profile->bio) }}</textarea>
+                            </div>
+
+                            <!-- Favorite Class -->
+                            <div class="mb-4">
+                                <label class="block text-sm font-medium text-gray-700">Favorite Class</label>
+                                <select name="fav_class" class="mt-1 block w-full rounded-md border-gray-300">
+                                    <option value="">-- Select Class --</option>
+                                    <option value="ironclad" {{ old('fav_class', $profile->fav_class) === 'ironclad' ? 'selected' : '' }}>Ironclad</option>
+                                    <option value="silent" {{ old('fav_class', $profile->fav_class) === 'silent' ? 'selected' : '' }}>Silent</option>
+                                    <option value="defect" {{ old('fav_class', $profile->fav_class) === 'defect' ? 'selected' : '' }}>Defect</option>
+                                    <option value="watcher" {{ old('fav_class', $profile->fav_class) === 'watcher' ? 'selected' : '' }}>Watcher</option>
+                                </select>
+                            </div>
+
+                            <button type="submit"
+                                    class="bg-indigo-600 text-white px-4 py-2 rounded hover:bg-indigo-700">
+                                Update Profile
+                            </button>
+                        </form>
+                    </div>
+                @endif
+
+                <!-- Profile's Posts -->
             <div class="bg-white sm:rounded-lg p-6 shadow">
                 <h3 class="text-3xl font-bold mb-4">Posts by {{ $profile->profile_name }}</h3>
 
@@ -63,6 +119,8 @@
                         @endforeach
                     </ul>
                 @endif
+            </div>
+
             </div>
         </div>
     </div>

@@ -38,6 +38,25 @@ class ProfileController extends Controller
         return Redirect::route('profile.edit')->with('status', 'profile-updated');
     }
 
+    public function updateProfile(Request $request, Profile $profile)
+    {
+        $userProfile = Auth::user()->profile;
+
+        // Only allow the logged-in user to update their own profile
+        if ($profile->id !== $userProfile->id) {
+            abort(403, 'Unauthorized action.');
+        }
+
+        $validated = $request->validate([
+            'bio' => 'nullable|string|max:500',
+            'fav_class' => 'nullable|in:ironclad,silent,defect,watcher',
+        ]);
+
+        $profile->update($validated);
+
+        return redirect()->back()->with('message', 'Profile updated successfully!');
+    }
+
     /**
      * Delete the user's account.
      */

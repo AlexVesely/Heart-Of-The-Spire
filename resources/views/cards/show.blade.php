@@ -21,6 +21,7 @@
             <!-- Buttons -->
             <div class="mt-6 flex flex-col items-start gap-3">
                 <!-- Delete -->
+                @if (Auth::user()->profile->is_admin)
                 <form method="POST" action="{{ route('cards.destroy', $card->id) }}">
                     @csrf
                     @method('DELETE')
@@ -31,6 +32,7 @@
                         Delete
                     </button>
                 </form>
+                @endif
 
                     <!-- Back -->
                     <a href="{{ route('cards.index') }}"

@@ -37,6 +37,7 @@ Route::middleware('auth','verified')->group(function () {
 
 Route::middleware('auth','verified')->group(function () {
     Route::get('/profiles/{id}', [ProfileController::class, 'show'])->name('profiles.show');
+    Route::put('/profiles/{profile}', [ProfileController::class, 'updateProfile'])->name('profiles.update');
 });
 
 

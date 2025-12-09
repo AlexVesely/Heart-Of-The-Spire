@@ -8,6 +8,13 @@
     <div class="py-12">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8 space-y-6">
 
+        <!-- Flash Message -->
+            @if(session('message'))
+                <div class="p-4 bg-green-100 text-green-700 rounded-lg">
+                    {{ session('message') }}
+                </div>
+            @endif
+
             <!-- Post Container -->
             <div class="bg-white sm:rounded-lg p-6 shadow">
 
