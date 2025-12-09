@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Card;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class CardController extends Controller
 {
@@ -29,6 +30,13 @@ class CardController extends Controller
      */
     public function store(Request $request)
     {
+        $userProfile = Auth::user()->profile;
+
+        // Only admins can create cards
+        if (!$userProfile->is_admin) {
+            abort(403, 'Unauthorized action.');
+        }
+
         $validatedData = $request->validate([
             'name' => 'required|max:255',
             'energy_cost' => 'required|numeric',

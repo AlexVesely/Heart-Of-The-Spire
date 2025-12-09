@@ -59,9 +59,11 @@
                     @endforeach
                 </ul>
 
+                @if (Auth::user()->profile->is_admin)
                 <a href="{{ route('cards.create') }}" class="inline-block mt-4 text-green-600 hover:text-green-800 font-medium">
                     Create Card
                 </a>
+                @endif
                 
                 <!-- Pagination Links -->
                 <div class="mt-6">
