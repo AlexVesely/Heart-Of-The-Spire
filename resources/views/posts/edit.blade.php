@@ -49,6 +49,27 @@
                         >{{ old('content', $post->content) }}</textarea>
                     </div>
 
+                    <!-- Cards Selection -->
+                    <div class="mb-4">
+                        <label class="text-sm font-medium">Select Cards</label>
+
+                        <select name="cards[]" class="mt-1 block w-full rounded-md border-gray-300" multiple>
+                            @foreach($cards as $card)
+                                <!-- Select cards from post originally -->
+                                <option 
+                                    value="{{ $card->id }}"
+                                    @if(in_array($card->id, old('cards', $post->cards->pluck('id')->toArray())))
+                                        selected
+                                    @endif
+                                >
+                                    {{ $card->name }}
+                                </option>
+                            @endforeach
+                        </select>
+
+                        <p class="text-xs text-gray-500 mt-1">Hold Ctrl to select multiple cards</p>
+                    </div>
+
                     <!-- Buttons -->
                     <div class="flex space-x-2">
                         <a href="{{ route('posts.index') }}"

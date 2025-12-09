@@ -78,7 +78,13 @@ class PostController extends Controller
             abort(403, 'Unauthorized action.');
         }
 
-        return view('posts.edit', compact('post'));
+        // Fetch all available cards
+        $cards = Card::all();
+
+        return view('posts.edit', [
+            'post'  => $post,
+            'cards' => $cards,
+        ]);
     }
 
     /**
@@ -98,9 +104,21 @@ class PostController extends Controller
         $validatedData = $request->validate([
             'title' => 'required|max:255',
             'content' => 'required|max:1000',
+
+            // Cards validation
+            'cards'   => 'array',
+            'cards.*' => 'exists:cards,id', 
         ]);
 
-        $post->update($validatedData);
+        // Update post fields
+        $post->update([
+            'title'   => $validatedData['title'],
+            'content' => $validatedData['content'],
+        ]);
+
+        // Sync selected cards (attach/detach)
+        // If no cards were selected, sync with an empty array to detach all
+        $post->cards()->sync($request->input('cards', []));
 
         session()->flash('message', 'Post updated successfully!');
         return redirect()->route('posts.show', $post->id);

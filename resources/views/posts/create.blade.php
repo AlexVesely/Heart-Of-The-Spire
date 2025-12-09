@@ -57,7 +57,7 @@
                                 </option>
                             @endforeach
                         </select>
-                        <p class="text-xs text-gray-500 mt-1">Hold Ctrl to select multiple cards.</p>
+                        <p class="text-xs text-gray-500 mt-1">Hold Ctrl to select multiple cards</p>
                     </div>
 
                     <!-- Buttons -->
