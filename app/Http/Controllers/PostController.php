@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Post;
+use App\Models\Card;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -22,7 +23,8 @@ class PostController extends Controller
      */
     public function create()
     {
-        return view('posts.create');
+        $cards = Card::all(); // get all cards
+        return view('posts.create', compact('cards'));
     }
 
     /**
@@ -35,13 +37,20 @@ class PostController extends Controller
         $validatedData = $request->validate([
             'title' => 'required|max:255',
             'content' => 'required|max:1000',
+            'cards' => 'nullable|array',
+            'cards.*' => 'exists:cards,id',
         ]);
 
-        $a = new Post;
-        $a->title = $validatedData['title'];
-        $a->content = $validatedData['content'];
-        $a->profile_id = $userProfile->id;  // attach logged in user's profile to post
-        $a->save();
+        $post = new Post;
+        $post->title = $validatedData['title'];
+        $post->content = $validatedData['content'];
+        $post->profile_id = $userProfile->id;
+        $post->save();
+
+        // Attach selected cards (many-to-many)
+        if (!empty($validatedData['cards'])) {
+            $post->cards()->attach($validatedData['cards']);
+        }
 
         session()->flash('message', 'Post was created!');
         return redirect()->route('posts.index');

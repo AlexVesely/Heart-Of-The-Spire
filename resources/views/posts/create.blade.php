@@ -27,9 +27,7 @@
 
                     <!-- Title -->
                     <div class="mb-4">
-                        <label class="text-sm font-medium">
-                            Title
-                        </label>
+                        <label class="text-sm font-medium">Title</label>
                         <input
                             type="text"
                             name="title"
@@ -40,9 +38,7 @@
 
                     <!-- Content -->
                     <div class="mb-4">
-                        <label class="text-sm font-medium">
-                            Content
-                        </label>
+                        <label class="text-sm font-medium">Content</label>
                         <textarea
                             name="content"
                             rows="5"
@@ -50,6 +46,19 @@
                         >{{ old('content') }}</textarea>
                     </div>
 
+                    <!-- Cards Selection -->
+                    <div class="mb-4">
+                        <label class="text-sm font-medium">Select Cards</label>
+                        <!-- Allow multiple cards to be selected -->
+                        <select name="cards[]" class="mt-1 block w-full rounded-md border-gray-300" multiple>
+                            @foreach($cards as $card)
+                                <option value="{{ $card->id }}">
+                                    {{ $card->name }}
+                                </option>
+                            @endforeach
+                        </select>
+                        <p class="text-xs text-gray-500 mt-1">Hold Ctrl to select multiple cards.</p>
+                    </div>
 
                     <!-- Buttons -->
                     <div>
