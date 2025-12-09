@@ -74,12 +74,13 @@ class CommentController extends Controller
         $userProfile = Auth::user()->profile;
 
         // Check if user logged in has permission to edit this comment
-        if ($comment->profile_id !== $userProfile->id && $userProfile->is_admin) {
+        if ($comment->profile_id !== $userProfile->id && !$userProfile->is_admin) {
             abort(403, 'Unauthorized action.');
         }
 
         return view('comments.edit', compact('comment'));
     }
+    
     /**
      * Update the specified resource in storage.
      */
