@@ -21,9 +21,14 @@
                     <x-nav-link :href="route('cards.index')" :active="request()->routeIs('cards.*')">
                         {{ __('Cards') }}
                     </x-nav-link>
-                    <!-- !!!!! MAYBE ADD AN ACTIVE -->
                     <x-nav-link :href="route('profiles.show', Auth::user()->profile->id ?? 0)">
-                        {{ Auth::user()->profile->profile_name ?? 'My Profile' }}
+                        {{ Auth::user()->profile->profile_name}}
+                        <!-- Display an ADMIN badge if the logged in user is an admin-->
+                        @if (Auth::user()->profile->is_admin)
+                            <span class="ml-2 px-2 py-1 text-xs font-bold bg-red-600 text-white rounded">
+                                ADMIN
+                            </span>
+                        @endif
                     </x-nav-link>
                 </div>
             </div>
