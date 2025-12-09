@@ -32,15 +32,15 @@ class CommentController extends Controller
         $userProfile = Auth::user()->profile;
 
         $validatedData = $request->validate([
-            'comment_id' => 'required|exists:comments,id',
+            'post_id' => 'required|exists:posts,id',
             'content' => 'required|max:1000',
         ]);
 
-        $a = new Comment;
-        $a->comment_id = $validatedData['comment_id'];
-        $a->content = $validatedData['content'];
-        $a->profile_id = $userProfile->id; // attach logged in user's profile to comment
-        $a->save();
+        $comment = new Comment;
+        $comment->post_id = $validatedData['post_id']; // link to the post
+        $comment->content = $validatedData['content'];
+        $comment->profile_id = $userProfile->id; // attach logged in user's profile
+        $comment->save();
 
         session()->flash('message', 'Comment was added!');
         return redirect()->back();
