@@ -43,7 +43,18 @@ class CommentController extends Controller
         $comment->save();
 
         session()->flash('message', 'Comment was added!');
-        return redirect()->back();
+        
+        return response()->json([
+        'success' => true,
+        'comment' => [
+            'id' => $comment->id,
+            'content' => $comment->content,
+            'profile_id' => $userProfile->id,
+            'profile_name' => $userProfile->profile_name,
+            'can_edit' => true,   // because the logged-in user just created it
+            'can_delete' => true, // same reason
+        ]
+    ]);
     }
 
     /**

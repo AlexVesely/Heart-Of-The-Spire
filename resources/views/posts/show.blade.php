@@ -8,13 +8,6 @@
     <div class="py-12">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8 space-y-6">
 
-        <!-- Flash Message -->
-            @if(session('message'))
-                <div class="p-4 bg-green-100 text-green-700 rounded-lg">
-                    {{ session('message') }}
-                </div>
-            @endif
-
             <!-- Post Container -->
             <div class="bg-white sm:rounded-lg p-6 shadow">
 
@@ -81,7 +74,7 @@
             <!-- Comments Section -->
             <div class="bg-white sm:rounded-lg p-6 shadow">
                 <h3 class="text-3xl font-bold mb-4">Comments</h3>
-                    <ul>
+                    <ul id="comments-list">
                         @foreach ($post->comments as $comment)
                             <li class="border-b pb-3">
 
@@ -126,15 +119,16 @@
 
             <!-- Comment Form -->
             <div class="mt-6">
-                <form method="POST" action="{{ route('comments.store') }}">
+                <form id="comment-form" method="POST" action="{{ route('comments.store') }}">
                     @csrf
                     <!-- DO NOT SHOW THE POSTS ID TO THE USER, BUT THIS INFO IS-->
                     <input type="hidden" name="post_id" value="{{ $post->id }}">
 
-                    <textarea name="content"
-                            class="w-full border rounded p-2 resize-none"
-                            placeholder="Write a comment..."
-                            required></textarea>
+                    <textarea id="comment-content" name="content"
+                        class="w-full border rounded p-2 resize-none"
+                        placeholder="Write a comment..."
+                        required>
+                    </textarea>
 
                     <button type="submit"
                         class="mt-2 bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700">
@@ -147,3 +141,70 @@
         </div>
     </div>
 </x-app-layout>
+
+<script>
+/*
+This script allows the comment form to submit via AJAX (without a page refresh)
+and dynamically adds the new comment to the list on success.
+*/
+
+// Wait until the DOM is fully loaded before running the script
+document.addEventListener('DOMContentLoaded', function () { 
+    const form = document.getElementById('comment-form');
+    const commentsList = document.getElementById('comments-list');
+
+    form.addEventListener('submit', function (e) {
+        e.preventDefault(); // Prevent the default form submission behavior (page reload)
+
+        const formData = new FormData(form); // Create a FormData object from the form, which collects all inputs
+
+        const token = document.querySelector('input[name="_token"]').value; // Grab the CSRF token to send with AJAX request (required by Laravel)
+
+        fetch(form.action, {
+            method: 'POST',
+            headers: {
+                'X-CSRF-TOKEN': token, // Laravel expects CSRF token header for security
+                'Accept': 'application/json' // Tell server we want JSON back
+            },
+            body: formData // Snd the form data as the request body
+        })
+        .then(response => response.json()) // Parse the response from the server as JSON
+        .then(data => {
+            if (data.success) { // If server returns success
+                const newComment = document.createElement('li'); // Add newly added comment and styling to it
+                newComment.classList.add('border-b', 'pb-3');
+
+                // Prepare Edit/Delete buttons if allowed
+                let buttons = '';
+                if (data.comment.can_edit) { // Will be yes because a user is allowed to edit/delete their own comments
+                    buttons += `<a href="/comments/${data.comment.id}/edit" class="text-yellow-600 hover:underline">Edit</a>`;
+                }
+                if (data.comment.can_delete) {
+                    buttons += `<form method="POST" action="/comments/${data.comment.id}" style="display:inline;">
+                                    <input type="hidden" name="_method" value="DELETE">
+                                    <input type="hidden" name="_token" value="${token}">
+                                    <button class="text-red-600 hover:underline" onclick="return confirm('Delete this comment?')">Delete</button>
+                                </form>`;
+                }
+
+                // Build comment HTML
+                newComment.innerHTML = `
+                    <p class="font-semibold text-lg">
+                        <a href="/profiles/${data.comment.profile_id}" class="text-blue-600 hover:underline">
+                            ${data.comment.profile_name}
+                        </a>
+                    </p>
+                    <p class="text-gray-600 mt-1">${data.comment.content}</p>
+                    <div class="mt-2 flex gap-3">
+                        ${buttons}
+                    </div>
+                `;
+
+                commentsList.prepend(newComment); // Add new comment at the top
+                document.getElementById('comment-content').value = ''; // Clear textarea
+            }
+        })
+        .catch(error => console.error(error)); // catch errors
+    });
+});
+</script>
