@@ -73,7 +73,7 @@ class User extends Authenticatable
                 'user_id' => $user->id, // Connect the new profile with this user
                 'profile_name' => fake()->userName(),
                 'is_admin' => false,
-                'bio' => fake()->realText(300),
+                'bio' => 'Hi, I am new to Heart of the Spire! I hope you have a lovely day!',
                 'fav_class' => fake()->randomElement(['ironclad','silent','defect','watcher']), // default value
             ]);
         });

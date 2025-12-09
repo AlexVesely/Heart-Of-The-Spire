@@ -1,11 +1,13 @@
 <x-app-layout>
     <x-slot name="header">
-        <h2 class="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight">
-            {{ $profile->profile_name }}'s Profile
-        </h2>
+        <header>
+            <h1 class="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight">
+                {{ $profile->profile_name }}'s Profile
+            </h1>
+        </header>
     </x-slot>
 
-    <div class="py-12">
+    <main class="py-12">
         <div class="max-w-5xl mx-auto sm:px-6 lg:px-8 space-y-6">
 
             <!-- Flash Message -->
@@ -16,6 +18,7 @@
             @endif
 
             <!-- Profile Details -->
+            <h2 class="sr-only">Profile Details</h2>
             <div class="bg-white shadow-sm sm:rounded-lg p-6">
                 <div class="space-y-2 text-gray-800 capitalize">
                     <p><span class="font-semibold">Profile Name:</span> {{ $profile->profile_name }}</p>
@@ -23,6 +26,7 @@
                     <p><span class="font-semibold">Bio:</span> {{ $profile->bio }}</p>
                     
                     <!-- Favorite Class -->
+                    <h2 class="sr-only">Favorite Class</h2>
                     <p>
                         <span class="font-semibold">Favorite Class:</span>
                         @if ($profile->fav_class === 'ironclad')
@@ -56,6 +60,7 @@
 
                         {{-- Error Messages --}}
                         @if ($errors->any())
+                            <h2 class="sr-only">Error Messages</h2>
                             <div class="mb-4 p-4 bg-red-100 text-red-700 rounded-lg">
                                 <p class="font-bold">There were some problems:</p>
                                 <ul class="mt-2 list-disc list-inside">
@@ -71,6 +76,7 @@
                             @method('PUT')
 
                             <!-- Bio -->
+                            <h2 class="sr-only">Bio</h2>
                             <div class="mb-4">
                                 <label class="block text-sm font-medium text-gray-700">Bio</label>
                                 <textarea name="bio"
@@ -80,6 +86,7 @@
                             </div>
 
                             <!-- Favorite Class -->
+                            <h2 class="sr-only">Favourite Class</h2>
                             <div class="mb-4">
                                 <label class="block text-sm font-medium text-gray-700">Favorite Class</label>
                                 <select name="fav_class" class="mt-1 block w-full rounded-md border-gray-300">
@@ -123,5 +130,5 @@
 
             </div>
         </div>
-    </div>
+    </main>
 </x-app-layout>
