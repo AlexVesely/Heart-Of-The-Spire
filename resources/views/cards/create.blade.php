@@ -83,6 +83,16 @@
                         </select>
                     </div>
 
+                    <!-- Card Text -->
+                    <div class="mb-4">
+                        <label>Card Text</label>
+                        <textarea
+                            name="card_text"
+                            rows="3"
+                            class="mt-1 block w-full rounded-md border-gray-300 resize-none"
+                        >{{ old('card_text') }}</textarea>
+                    </div>
+
                     <!-- Buttons -->
                     <div>
                         <a href="{{ route('cards.index') }}"

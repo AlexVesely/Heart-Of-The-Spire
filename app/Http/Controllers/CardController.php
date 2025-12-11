@@ -43,6 +43,7 @@ class CardController extends Controller
             'rarity' => 'required',
             'type' => 'required',
             'class' => 'required',
+            'card_text' => 'required|string|max:500',
         ]);
 
         $a = new Card;
@@ -51,6 +52,7 @@ class CardController extends Controller
         $a->rarity = $validatedData['rarity'];
         $a->type = $validatedData['type'];
         $a->class = $validatedData['class'];
+        $a->card_text = $validatedData['card_text'];
         $a->save();
 
         session()->flash('message', 'Card was created!');

@@ -16,6 +16,7 @@
                     <p><span class="font-semibold">Rarity:</span> {{ $card->rarity }}</p>
                     <p><span class="font-semibold">Type:</span> {{ $card->type }}</p>
                     <p><span class="font-semibold">Class:</span> {{ $card->class }}</p>
+                    <p><span class="font-semibold">Card Text:</span> {{ $card->card_text }}</p>
                 </div>
 
             <!-- Buttons -->
