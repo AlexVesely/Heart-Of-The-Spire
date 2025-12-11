@@ -128,6 +128,33 @@
                 @endif
             </div>
 
+            <!-- Profile's Comments -->
+            <div class="bg-white sm:rounded-lg p-6 shadow mt-6">
+                <h3 class="text-3xl font-bold mb-4">Comments by {{ $profile->profile_name }}</h3>
+
+                @if($profile->comments->isEmpty())
+                    <p class="text-gray-500">This user hasn’t commented on anything yet.</p>
+                @else
+                    <ul class="space-y-4">
+                        @foreach($profile->comments as $comment)
+                            <li class="border-b pb-4">
+                                <p class="text-gray-800">
+                                    {{ $comment->content }}
+                                </p>
+
+                                <p class="text-gray-600 text-sm mt-1">
+                                    On post:
+                                    <a href="{{ route('posts.show', $comment->post->id) }}"
+                                    class="hover:underline text-indigo-600 font-medium">
+                                    {{ $comment->post->title }}
+                                    </a>
+                                </p>
+                            </li>
+                        @endforeach
+                    </ul>
+                @endif
+            </div>
+
             </div>
         </div>
     </main>

@@ -78,10 +78,12 @@ class ProfileController extends Controller
         return Redirect::to('/');
     }
 
-    public function show(string $id)
+    public function show($id)
     {
-        $profile = Profile::findOrFail($id);
-        return view('profiles.show', ['profile' => $profile]);
+        $profile = Profile::with(['posts', 'comments.post'])->findOrFail($id);
+
+        return view('profiles.show', compact('profile'));
     }
+
 
 }

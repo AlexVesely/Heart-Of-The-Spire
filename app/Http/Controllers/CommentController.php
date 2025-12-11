@@ -41,8 +41,6 @@ class CommentController extends Controller
         $comment->content = $validatedData['content'];
         $comment->profile_id = $userProfile->id; // attach logged in user's profile
         $comment->save();
-
-        session()->flash('message', 'Comment was added!');
         
         return response()->json([
         'success' => true,
