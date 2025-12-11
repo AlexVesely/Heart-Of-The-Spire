@@ -21,6 +21,7 @@ return new class extends Migration
             $table->enum('rarity', ['starter', 'common', 'uncommon', 'rare']);
             $table->enum('type', ['attack','skill','power']);
             $table->enum('class', ['ironclad','silent','defect','watcher']);
+            $table->string('card_text');
             $table->timestamps();
         });
     }

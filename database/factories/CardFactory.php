@@ -26,6 +26,7 @@ class CardFactory extends Factory
             'rarity' => fake()->randomElement(['starter', 'common', 'uncommon', 'rare']),
             'type'  => fake()->randomElement(['attack','skill','power']),
             'class'  => fake()->randomElement(['ironclad','silent','defect','watcher']),
+            'card_text' => fake()->realText(50),
         ];
     }
 }

@@ -19,6 +19,7 @@ class CardTableSeeder extends Seeder
         $card1->rarity = 'common';
         $card1->type = 'attack';
         $card1->class = 'ironclad';
+        $card1->card_text = 'Deal 6 damage. Add a copy of this card into your discard pile.';
         $card1->save();
 
         $card2 = new Card;
@@ -27,6 +28,7 @@ class CardTableSeeder extends Seeder
         $card2->rarity = 'uncommon';
         $card2->type = 'power';
         $card2->class = 'silent';
+        $card2->card_text = 'Gain 2 Dexterity.';
         $card2->save();
 
         // Create 10 cards for 'cards' table
