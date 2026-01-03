@@ -18,8 +18,8 @@ class PostTableSeeder extends Seeder
         $post1->content = "I love anger and footwork. There's just something great about them.";
         $post1->profile_id = 1; // Connect profile1 to post1
         $post1->save();
-        $post1->cards()->attach(1); // attach card1 to post1
-        $post1->cards()->attach(2); // attach card1 to post1
+        $post1->cards()->attach(2); // attach card2 to post1
+        $post1->cards()->attach(7); // attach card7 to post1
 
         $post2 = new Post;
         $post2->title = "Ironclad is broken";
@@ -32,9 +32,6 @@ class PostTableSeeder extends Seeder
         $post3->content = "I am not a bad player, this card just is not working with anything.";
         $post3->profile_id = 2; // Connect profile2 to post3
         $post3->save();
-        $post3->cards()->attach(2); // attach card1 to post3
-
-        // Create 10 posts for 'posts' table
-        Post::factory()->count(50)->create();
+        $post3->cards()->attach(4); // attach card4 to post3
     }
 }
