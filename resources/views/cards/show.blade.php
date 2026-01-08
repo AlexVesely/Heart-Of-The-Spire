@@ -20,7 +20,7 @@
                 </div>
 
             <!-- Buttons -->
-            <div class="mt-6 flex flex-col items-start gap-3">
+            <div class="mt-2 flex flex-col items-start gap-2">
                 <!-- Delete -->
                 @if (Auth::user()->profile->is_admin)
                 <form method="POST" action="{{ route('cards.destroy', $card->id) }}">
@@ -35,11 +35,27 @@
                 </form>
                 @endif
 
-                    <!-- Back -->
-                    <a href="{{ route('cards.index') }}"
-                       class="text-blue-600 hover:underline">
-                        ← Back to Cards
-                    </a>
+                <!-- Card Image (if exists) -->
+                @php
+                    // Remove spaces and capitalize each word to match filename
+                    $fileName = str_replace(' ', '', ucwords(strtolower($card->name))) . '.png';
+
+                    // Build the full server path to the card image in the public/images folder
+                    $imagePath = public_path('images/' . $fileName);
+                @endphp
+
+                @if(file_exists($imagePath))
+                    <!-- Only if the file actually exists, show the image -->
+                    <img src="{{ asset('images/' . $fileName) }}"
+                        alt="{{ $card->name }} image"
+                        class="mt-2 h-60 w-auto">
+                @endif
+
+                <!-- Back -->
+                <a href="{{ route('cards.index') }}"
+                    class="text-blue-600 hover:underline">
+                    ← Back to Cards
+                </a>
                 </div>
             </div>
 
