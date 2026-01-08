@@ -29,7 +29,7 @@ class ProfileFactory extends Factory
             'bio' => fake()->realText(300),
             'fav_class' => fake()->randomElement(['ironclad','silent','defect','watcher']),
             'profile_img_id' => fake()->randomElement(['Defect.png','Donu.png','Ironclad.png',
-            'Silent.png','Watcher.png']),
+            'Silent.png','Watcher.png','Whale.png','Merchant.png']),
         ];
     }
 }

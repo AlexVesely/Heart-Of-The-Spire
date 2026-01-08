@@ -18,24 +18,38 @@
             <div class="bg-white shadow-sm sm:rounded-lg p-6">
                 <ul>
                     @foreach ($posts as $post)
-                        <li class="border-b mb-4 pb-4">
-                            <a href="{{ route('posts.show', $post->id) }}" class="font-semibold hover:underline text-lg">
-                                {{ $post->title }}
-                            </a>
-                            <p class="text-gray-600 mt-1">
-                                <!--Shows first 50 characters and then ... -->
-                                {{ Str::limit($post->content, 50) }}
-                            </p>
-                            <p class="text-gray-500 text-sm mt-1">
-                                Posted by: 
-                                <a href="{{ route('profiles.show', $post->profile->id) }}" class="font-medium text-blue-600 hover:underline">
-                                    {{ $post->profile->profile_name }}
-                                </a>
-                            </p>
+                        <li class="border-b mb-4 pb-4 flex gap-3 items-start">
+                            
+                            <!-- Optional: Profile Image -->
+                            @if($post->profile->profile_img_id)
+                                <img src="{{ asset('images/' . $post->profile->profile_img_id) }}" 
+                                    alt="{{ $post->profile->profile_name }}'s profile image"
+                                    class="h-10 w-10 rounded-full object-cover">
+                            @endif
 
+                            <div class="flex-1">
+                                <!-- Post Title -->
+                                <a href="{{ route('posts.show', $post->id) }}" class="font-semibold hover:underline text-lg">
+                                    {{ $post->title }}
+                                </a>
+
+                                <!-- Post Excerpt -->
+                                <p class="text-gray-600 mt-1">
+                                    {{ Str::limit($post->content, 50) }}
+                                </p>
+
+                                <!-- Author -->
+                                <p class="text-gray-500 text-sm mt-1 flex items-center gap-2">
+                                    Posted by: 
+                                    <a href="{{ route('profiles.show', $post->profile->id) }}" class="font-medium text-blue-600 hover:underline">
+                                        {{ $post->profile->profile_name }}
+                                    </a>
+                                </p>
+                            </div>
                         </li>
                     @endforeach
                 </ul>
+
 
                 <!-- Pagination Links -->
                 <div class="mt-6">

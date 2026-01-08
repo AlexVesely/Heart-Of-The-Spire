@@ -107,9 +107,10 @@
                                     <option value="Defect.png" {{ old('profile_img_id', $profile->profile_img_id) === 'Defect.png' ? 'selected' : '' }}>Defect</option>
                                     <option value="Watcher.png" {{ old('profile_img_id', $profile->profile_img_id) === 'Watcher.png' ? 'selected' : '' }}>Watcher</option>
                                     <option value="Donu.png" {{ old('profile_img_id', $profile->profile_img_id) === 'Donu.png' ? 'selected' : '' }}>Donu</option>
+                                    <option value="Whale.png" {{ old('profile_img_id', $profile->profile_img_id) === 'Whale.png' ? 'selected' : '' }}>Whale</option>
+                                    <option value="Merchant.png" {{ old('profile_img_id', $profile->profile_img_id) === 'Merchant.png' ? 'selected' : '' }}>Merchant</option>
                                 </select>
 
-                                {{$profile->profile_img_id}}
                             </div>
 
                             <button type="submit"
