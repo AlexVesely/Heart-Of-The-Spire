@@ -12,7 +12,7 @@
             <div class="bg-white sm:rounded-lg p-6 shadow">
 
                 <!-- Post Details -->
-                <h2 class="text-5xl font-bold mb-4">{{ $post->title }}</h2>
+                <h2 class="text-5xl font-bold mb-3">{{ $post->title }}</h2>
 
                 <!-- Post Author -->
                 <p class="text-gray-700 mb-2">
@@ -23,7 +23,7 @@
                 </p>
 
                 <!-- Post's Cards -->
-                <p class="text-gray-700 mb-6">
+                <p class="text-gray-700 mb-3">
                     <span class="font-semibold">Cards:</span>
                     @if($post->cards->isNotEmpty())
                         @foreach($post->cards as $card)
@@ -37,13 +37,34 @@
                 </p>
 
                 <!-- Post's Content -->
-                <p class="text-gray-700 mb-6">
+                <p class="text-gray-700 mb-3">
                     {{ $post->content }}
                 </p>
 
+                <!-- Post's Cards Images -->
+                @if($post->cards->isNotEmpty())
+                    <div class="mt-4 flex flex-wrap gap-4">
+                        @foreach($post->cards as $card)
+                            @php
+                                // Convert card name to CamelCase to match filename
+                                $fileName = str_replace(' ', '', ucwords(strtolower($card->name))) . '.png';
+                                $imagePath = public_path('images/' . $fileName);
+                            @endphp
+
+                            @if(file_exists($imagePath))
+                                <a href="{{ route('cards.show', $card->id) }}" title="{{ $card->name }}">
+                                    <img src="{{ asset('images/' . $fileName) }}"
+                                        alt="{{ $card->name }} image"
+                                        class="h-60 w-auto">
+                                </a>
+                            @endif
+                        @endforeach
+                    </div>
+                @endif
+
                 <!-- Back -->
                 <a href="{{ route('posts.index') }}"
-                class="text-blue-600 hover:underline block mb-4">
+                class="text-blue-600 hover:underline block mb-4 mt-3">
                     ← Back to Posts
                 </a>
 
