@@ -38,18 +38,18 @@
                                     {{ Str::limit($post->content, 50) }}
                                 </p>
 
-                                <!-- Author -->
+                                <!-- Author and Comment Count -->
                                 <p class="text-gray-500 text-sm mt-1 flex items-center gap-2">
                                     Posted by: 
                                     <a href="{{ route('profiles.show', $post->profile->id) }}" class="font-medium text-blue-600 hover:underline">
                                         {{ $post->profile->profile_name }}
                                     </a>
+                                    {{ $post->comments->count() }} {{ Str::plural('comment', $post->comments->count()) }}
                                 </p>
                             </div>
                         </li>
                     @endforeach
                 </ul>
-
 
                 <!-- Pagination Links -->
                 <div class="mt-6">
