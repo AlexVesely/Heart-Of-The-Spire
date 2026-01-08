@@ -33,5 +33,27 @@ class PostTableSeeder extends Seeder
         $post3->profile_id = 2; // Connect profile2 to post3
         $post3->save();
         $post3->cards()->attach(4); // attach card4 to post3
+
+        $post4 = new Post;
+        $post4->title = "Alchemize is AMAZING";
+        $post4->content = "Try it in all your silent decks. You will always win";
+        $post4->profile_id = 3; // Connect profile3 to post4
+        $post4->save();
+        $post4->cards()->attach(1); // attach card1 to post4
+
+        $post5 = new Post;
+        $post5->title = "Which card should i choose between these two?";
+        $post5->content = "This is a critical time to choose a card!!!";
+        $post5->profile_id = 4; // Connect profile4 to post5
+        $post5->save();
+        $post5->cards()->attach(3); // attach card3 to post5
+        $post5->cards()->attach(5); // attach card5 to post5
+
+        $post6 = new Post;
+        $post6->title = "I like Empty Body";
+        $post6->content = "It has saved me on so many occasions";
+        $post6->profile_id = 3; // Connect profile3 to post6
+        $post6->save();
+        $post6->cards()->attach(6); // attach card6 to post6
     }
 }

@@ -25,6 +25,18 @@ class CommentTableSeeder extends Seeder
         $b->post_id = 3; // Connect post3 to comment2
         $b->save();
 
+        $c = new Comment;
+        $c->content = "No, I disagree with this";
+        $c->profile_id = 5; // Connect profile3 to comment1
+        $c->post_id = 1; // Connect post1 to comment1
+        $c->save();
+
+        $c = new Comment;
+        $c->content = "I am not sure what to think? My experience does not align with yours";
+        $c->profile_id = 4; // Connect profile3 to comment1
+        $c->post_id = 1; // Connect post1 to comment1
+        $c->save();
+
         // Create 10 comments for 'comments' table
         Comment::factory()->count(50)->create();
     }
