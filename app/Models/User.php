@@ -75,6 +75,8 @@ class User extends Authenticatable
                 'is_admin' => false,
                 'bio' => 'Hi, I am new to Heart of the Spire! I hope you have a lovely day!',
                 'fav_class' => fake()->randomElement(['ironclad','silent','defect','watcher']), // default value
+                'profile_img_id' => fake()->randomElement(['Defect.png','Donu.png','Ironclad.png',
+            'Silent.png','Watcher.png']),
             ]);
         });
     }

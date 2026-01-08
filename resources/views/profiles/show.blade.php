@@ -90,12 +90,26 @@
                             <div class="mb-4">
                                 <label class="block text-sm font-medium text-gray-700">Favorite Class</label>
                                 <select name="fav_class" class="mt-1 block w-full rounded-md border-gray-300">
-                                    <option value="">-- Select Class --</option>
                                     <option value="ironclad" {{ old('fav_class', $profile->fav_class) === 'ironclad' ? 'selected' : '' }}>Ironclad</option>
                                     <option value="silent" {{ old('fav_class', $profile->fav_class) === 'silent' ? 'selected' : '' }}>Silent</option>
                                     <option value="defect" {{ old('fav_class', $profile->fav_class) === 'defect' ? 'selected' : '' }}>Defect</option>
                                     <option value="watcher" {{ old('fav_class', $profile->fav_class) === 'watcher' ? 'selected' : '' }}>Watcher</option>
                                 </select>
+                            </div>
+
+                            <!-- Profile Image -->
+                            <h2 class="sr-only">Profile Image</h2>
+                            <div class="mb-4">
+                                <label class="block text-sm font-medium text-gray-700">Profile Image</label>
+                                <select name="profile_img_id" class="mt-1 block w-full rounded-md border-gray-300">
+                                    <option value="Ironclad.png" {{ old('profile_img_id', $profile->profile_img_id) === 'Ironclad.png' ? 'selected' : '' }}>Ironclad</option>
+                                    <option value="Silent.png" {{ old('profile_img_id', $profile->profile_img_id) === 'Silent.png' ? 'selected' : '' }}>Silent</option>
+                                    <option value="Defect.png" {{ old('profile_img_id', $profile->profile_img_id) === 'Defect.png' ? 'selected' : '' }}>Defect</option>
+                                    <option value="Watcher.png" {{ old('profile_img_id', $profile->profile_img_id) === 'Watcher.png' ? 'selected' : '' }}>Watcher</option>
+                                    <option value="Donu.png" {{ old('profile_img_id', $profile->profile_img_id) === 'Donu.png' ? 'selected' : '' }}>Donu</option>
+                                </select>
+
+                                {{$profile->profile_img_id}}
                             </div>
 
                             <button type="submit"

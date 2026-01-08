@@ -21,9 +21,16 @@
                     <x-nav-link :href="route('cards.index')" :active="request()->routeIs('cards.*')">
                         {{ __('Cards') }}
                     </x-nav-link>
-                    <x-nav-link :href="route('profiles.show', Auth::user()->profile->id ?? 0)">
-                        {{ Auth::user()->profile->profile_name}}
-                        <!-- Display an ADMIN badge if the logged in user is an admin-->
+                    <x-nav-link :href="route('profiles.show', Auth::user()->profile->id ?? 0)" class="flex items-center gap-2">
+                        <!-- Profile Image -->
+                        <img src="{{ asset('images/' . (Auth::user()->profile->profile_img_id)) }}"
+                            alt="{{ Auth::user()->profile->profile_name }} image"
+                            class="h-8 w-8 rounded-full object-cover">
+
+                        <!-- Profile Name -->
+                        <span>{{ Auth::user()->profile->profile_name }}</span>
+
+                        <!-- Admin Badge -->
                         @if (Auth::user()->profile->is_admin)
                             <span class="ml-2 px-2 py-1 text-xs font-bold bg-red-600 text-white rounded">
                                 ADMIN

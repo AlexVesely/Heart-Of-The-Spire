@@ -20,6 +20,7 @@ class Profile extends Model
         'is_admin',
         'bio',
         'fav_class',
+        'profile_img_id'
     ];
 
     /**

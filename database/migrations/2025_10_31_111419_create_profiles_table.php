@@ -19,6 +19,7 @@ return new class extends Migration
             $table->boolean('is_admin');
             $table->text('bio');
             $table->enum('fav_class', ['ironclad','silent','defect','watcher']);
+            $table->string('profile_img_id');
             $table->bigInteger('user_id')->unsigned(); // FK to users table
             $table->timestamps();
 

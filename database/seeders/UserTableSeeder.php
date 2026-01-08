@@ -26,6 +26,7 @@ class UserTableSeeder extends Seeder
             'is_admin' => true,
             'bio' => 'I am the admin.',
             'fav_class' => 'ironclad', // default
+            'profile_img_id' => 'Ironclad.png',
         ]);
 
         $user2 = new User;
