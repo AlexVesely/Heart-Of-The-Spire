@@ -15,8 +15,15 @@
                 <h2 class="text-5xl font-bold mb-3">{{ $post->title }}</h2>
 
                 <!-- Post Author -->
-                <p class="text-gray-700 mb-2">
+                <p class="text-gray-700 mb-2 flex items-center gap-2">
                     <span class="font-semibold">Author:</span>
+
+                    @if($post->profile->profile_img_id)
+                        <img src="{{ asset('images/' . $post->profile->profile_img_id) }}"
+                            alt="{{ $post->profile->profile_name }} profile image"
+                            class="h-8 w-8 rounded-full object-cover">
+                    @endif
+
                     <a href="{{ route('profiles.show', $post->profile->id) }}" class="text-blue-600 hover:underline">
                         {{ $post->profile->profile_name ?? 'Unknown' }}
                     </a>
@@ -100,7 +107,12 @@
                             <li class="border-b pb-3">
 
                                 <!-- Author -->
-                                <p class="font-semibold text-lg">
+                                <p class="font-semibold text-lg flex items-center gap-2">
+                                    @if($comment->profile->profile_img_id)
+                                        <img src="{{ asset('images/' . $comment->profile->profile_img_id) }}"
+                                            alt="{{ $comment->profile->profile_name }} profile image"
+                                            class="h-6 w-6 rounded-full object-cover">
+                                    @endif
                                     <a href="{{ route('profiles.show', $comment->profile->id) }}" class="text-blue-600 hover:underline">
                                         {{ $comment->profile->profile_name }}
                                     </a>

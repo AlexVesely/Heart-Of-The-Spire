@@ -114,7 +114,7 @@
                             </div>
 
                             <button type="submit"
-                                    class="bg-indigo-600 text-white px-4 py-2 rounded hover:bg-indigo-700">
+                                    class="bg-indigo-600 text-white px-4 py-2 rounded hover:bg-indigo-700 mb-4">
                                 Update Profile
                             </button>
                         </form>
@@ -122,55 +122,67 @@
                 @endif
 
                 <!-- Profile's Posts -->
-            <div class="bg-white sm:rounded-lg p-6 shadow">
-                <h3 class="text-3xl font-bold mb-4">Posts by {{ $profile->profile_name }}</h3>
+                    <div class="bg-white sm:rounded-lg p-6 shadow">
+                        <h3 class="text-3xl font-bold mb-4">Posts by {{ $profile->profile_name }}</h3>
 
-                @if($profile->posts->isEmpty())
-                    <p class="text-gray-500">This user hasn’t posted anything yet.</p>
-                @else
-                    <ul class="space-y-4">
-                        @foreach($profile->posts as $post)
-                            <li class="border-b pb-4">
-                                <a href="{{ route('posts.show', $post->id) }}" class="font-semibold hover:underline text-lg">
-                                    {{ $post->title }}
-                                </a>
-                                <p class="text-gray-600 mt-1">
-                                    {{ Str::limit($post->content, 50) }}
-                                </p>
-                            </li>
-                        @endforeach
-                    </ul>
-                @endif
-            </div>
+                        @if($profile->posts->isEmpty())
+                            <p class="text-gray-500">This user hasn’t posted anything yet.</p>
+                        @else
+                            <ul class="space-y-4">
+                                @foreach($profile->posts as $post)
+                                    <li class="border-b pb-4">
+                                        <div class="flex items-center gap-2 mb-1">
+                                            @if($profile->profile_img_id)
+                                                <img src="{{ asset('images/' . $profile->profile_img_id) }}"
+                                                    alt="{{ $profile->profile_name }} profile image"
+                                                    class="h-6 w-6 rounded-full object-cover">
+                                            @endif
+                                            <a href="{{ route('posts.show', $post->id) }}" class="font-semibold hover:underline text-lg">
+                                                {{ $post->title }}
+                                            </a>
+                                        </div>
+                                        <p class="text-gray-600 mt-1">
+                                            {{ Str::limit($post->content, 50) }}
+                                        </p>
+                                    </li>
+                                @endforeach
+                            </ul>
+                        @endif
+                    </div>
 
-            <!-- Profile's Comments -->
-            <div class="bg-white sm:rounded-lg p-6 shadow mt-6">
-                <h3 class="text-3xl font-bold mb-4">Comments by {{ $profile->profile_name }}</h3>
+                    <!-- Profile's Comments -->
+                    <div class="bg-white sm:rounded-lg p-6 shadow mt-6">
+                        <h3 class="text-3xl font-bold mb-4">Comments by {{ $profile->profile_name }}</h3>
 
-                @if($profile->comments->isEmpty())
-                    <p class="text-gray-500">This user hasn’t commented on anything yet.</p>
-                @else
-                    <ul class="space-y-4">
-                        @foreach($profile->comments as $comment)
-                            <li class="border-b pb-4">
-                                <p class="text-gray-800">
-                                    {{ $comment->content }}
-                                </p>
+                        @if($profile->comments->isEmpty())
+                            <p class="text-gray-500">This user hasn’t commented on anything yet.</p>
+                        @else
+                            <ul class="space-y-4">
+                                @foreach($profile->comments as $comment)
+                                    <li class="border-b pb-4">
+                                        <div class="flex items-center gap-2 mb-1">
+                                            @if($profile->profile_img_id)
+                                                <img src="{{ asset('images/' . $profile->profile_img_id) }}"
+                                                    alt="{{ $profile->profile_name }} profile image"
+                                                    class="h-6 w-6 rounded-full object-cover">
+                                            @endif
+                                            <p class="text-gray-800">
+                                                {{ $comment->content }}
+                                            </p>
+                                        </div>
 
-                                <p class="text-gray-600 text-sm mt-1">
-                                    On post:
-                                    <a href="{{ route('posts.show', $comment->post->id) }}"
-                                    class="hover:underline text-indigo-600 font-medium">
-                                    {{ $comment->post->title }}
-                                    </a>
-                                </p>
-                            </li>
-                        @endforeach
-                    </ul>
-                @endif
-            </div>
+                                        <p class="text-gray-600 text-sm mt-1">
+                                            On post:
+                                            <a href="{{ route('posts.show', $comment->post->id) }}"
+                                            class="hover:underline text-indigo-600 font-medium">
+                                                {{ $comment->post->title }}
+                                            </a>
+                                        </p>
+                                    </li>
+                                @endforeach
+                            </ul>
+                        @endif
+                    </div>
 
-            </div>
-        </div>
     </main>
 </x-app-layout>

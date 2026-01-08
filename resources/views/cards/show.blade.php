@@ -60,38 +60,45 @@
             </div>
 
             <!-- Posts Connected to This Card -->
-            <div class="bg-white sm:rounded-lg p-6 shadow">
-                <h3 class="text-3xl font-bold mb-4">Posts Featuring This Card</h3>
+                <div class="bg-white sm:rounded-lg p-6 shadow">
+                    <h3 class="text-3xl font-bold mb-4">Posts Featuring This Card</h3>
 
-                @if($card->posts->isNotEmpty())
-                    <ul>
-                        @foreach($card->posts as $post)
-                            <li class="border-b pb-3 mb-3">
-                                <!-- Post title -->
-                                <a href="{{ route('posts.show', $post->id) }}" class="font-semibold text-lg text-blue-600 hover:underline">
-                                    {{ $post->title }}
-                                </a>
-
-                                <!-- Post author -->
-                                <p class="text-gray-500 text-sm mt-1">
-                                    Posted by: 
-                                    <a href="{{ route('profiles.show', $post->profile->id) }}" class="font-medium text-blue-600 hover:underline">
-                                        {{ $post->profile->profile_name }}
+                    @if($card->posts->isNotEmpty())
+                        <ul>
+                            @foreach($card->posts as $post)
+                                <li class="border-b pb-3 mb-3">
+                                    <!-- Post title -->
+                                    <a href="{{ route('posts.show', $post->id) }}" class="font-semibold text-lg text-blue-600 hover:underline">
+                                        {{ $post->title }}
                                     </a>
-                                </p>
 
-                                <!--Shows first 50 characters and then ... -->
-                                <p class="text-gray-600 mt-1">
-                                    {{ Str::limit($post->content, 50) }}
-                                </p>
-                            </li>
-                        @endforeach
-                    </ul>
-                @else
-                    <p class="text-gray-600">No posts are connected to this card yet</p>
-                @endif
-            </div>
+                                    <!-- Post author with profile pic -->
+                                    <p class="text-gray-500 text-sm mt-1 flex items-center gap-2">
+                                        Posted by: 
 
-           
+                                        @if($post->profile->profile_img_id)
+                                            <img src="{{ asset('images/' . $post->profile->profile_img_id) }}"
+                                                alt="{{ $post->profile->profile_name }} profile image"
+                                                class="h-6 w-6 rounded-full object-cover">
+                                        @endif
+
+                                        <a href="{{ route('profiles.show', $post->profile->id) }}" class="font-medium text-blue-600 hover:underline">
+                                            {{ $post->profile->profile_name }}
+                                        </a>
+                                    </p>
+
+                                    <!-- Shows first 50 characters and then ... -->
+                                    <p class="text-gray-600 mt-1">
+                                        {{ Str::limit($post->content, 50) }}
+                                    </p>
+                                </li>
+                            @endforeach
+                        </ul>
+                    @else
+                        <p class="text-gray-600">No posts are connected to this card yet</p>
+                    @endif
+                </div>
+
+ 
     </div>
 </x-app-layout>
