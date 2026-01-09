@@ -1,7 +1,7 @@
 # Heart of the Spire
 
 <img src ="https://github.com/user-attachments/assets/ea1fd185-b6e7-4cf1-a5c7-a87cd399263d" width=100%>
-<img src="https://github.com/user-attachments/assets/43746a82-cf15-42a3-9676-044e13530b25" width=49%>
+<img src="https://github.com/user-attachments/assets/f023892d-e60c-47c7-af80-e58911d9f43d" width=49%>
 <img src ="https://github.com/user-attachments/assets/91d06572-ad0a-49df-8fc1-d11bb7624223" width=49%>
 
 ## Intro
@@ -53,6 +53,7 @@ To access the project and explore it yourself please follow this set up.
 - Build front end assets.
 - Put the sail up.
 - Open localhost in your browser.
+
 
 
 
