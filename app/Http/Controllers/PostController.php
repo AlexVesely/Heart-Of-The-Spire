@@ -31,33 +31,30 @@ class PostController extends Controller
      * Store a newly created post in storage.
      */
     public function store(Request $request)
-{
-    $request->validate([
-        'content' => 'required|string|max:500',
-        'post_id' => 'required|exists:posts,id',
-    ]);
+    {
+        $userProfile = Auth::user()->profile;
 
-    $profile = Auth::user()->profile;
+        $validatedData = $request->validate([
+            'title' => 'required|max:255',
+            'content' => 'required|max:1000',
+            'cards' => 'nullable|array',
+            'cards.*' => 'exists:cards,id',
+        ]);
 
-    $comment = Comment::create([
-        'content' => $request->content,
-        'post_id' => $request->post_id,
-        'profile_id' => $profile->id,
-    ]);
+        $post = new Post;
+        $post->title = $validatedData['title'];
+        $post->content = $validatedData['content'];
+        $post->profile_id = $userProfile->id;
+        $post->save();
 
-    return response()->json([
-        'success' => true,
-        'comment' => [
-            'id' => $comment->id,
-            'content' => $comment->content,
-            'profile_id' => $profile->id,
-            'profile_name' => $profile->profile_name,
-            'profile_img_id' => $comment->profile->profile_img_id,
-            'can_edit' => true,
-            'can_delete' => true,
-        ],
-    ]);
-}
+        // Attach selected cards (many-to-many)
+        if (!empty($validatedData['cards'])) {
+            $post->cards()->attach($validatedData['cards']);
+        }
+
+        session()->flash('message', 'Post was created!');
+        return redirect()->route('posts.index');
+    }
 
     /**
      * Display the specified resource.
