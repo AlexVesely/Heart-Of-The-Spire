@@ -6,7 +6,7 @@
 
 ## Intro
 
-Heart of the Spire is a Laravel-based web application social media platform centered around the roguelike card game <i>Slay the Spire</i>. The web app allows users to create accounts and to write posts and comments about cards, builds and strategies.
+Heart of the Spire is a Laravel-based web application social media platform centred around the roguelike card game <i>Slay the Spire</i>. The web app allows users to create accounts and to write posts and comments about cards, builds and strategies.
 
 ## Demo
 
@@ -53,5 +53,6 @@ To access the project and explore it yourself please follow this set up.
 - Build front end assets.
 - Put the sail up.
 - Open localhost in your browser.
+
 
 
