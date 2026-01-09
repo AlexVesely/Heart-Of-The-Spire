@@ -50,7 +50,7 @@ class ProfileController extends Controller
         $validated = $request->validate([
             'bio' => 'nullable|string|max:500',
             'fav_class' => 'nullable|in:ironclad,silent,defect,watcher',
-            'profile_img_id' => 'nullable|in:Ironclad.png,Silent.png,Defect.png,Watcher.png,Donu.png',
+            'profile_img_id' => 'nullable|in:Ironclad.png,Silent.png,Defect.png,Watcher.png,Donu.png,Whale.png,Merchant.png',
         ]);
 
         $profile->update($validated);
