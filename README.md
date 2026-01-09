@@ -10,7 +10,7 @@ Heart of the Spire is a web application social media centred around hit roguelik
 
 ## Demo
 
-Watch a full showcase of the web app in action in this <a href="https://youtu.be/5HLWyaX4BHc">youtube video!</a>
+Watch a full showcase of the web app in action in this <a href="https://youtu.be/UfH4KBaTIDg?si=p6oAZBsGQIKcr1Lj">youtube video!</a>
 
 ## Features
 
@@ -19,4 +19,5 @@ Watch a full showcase of the web app in action in this <a href="https://youtu.be
 ## Set Up
 ### Requirements
 ### Steps
+
 
