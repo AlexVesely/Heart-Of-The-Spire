@@ -219,9 +219,15 @@ document.addEventListener('DOMContentLoaded', function () {
                                 </form>`;
                 }
 
-                // Build comment HTML
+                // Build profile image HTML if it exists
+                const profileImg = `<img src="/images/{{ Auth::user()->profile->profile_img_id }}" 
+                     alt="{{ Auth::user()->profile->profile_name }} profile image" 
+                     class="h-6 w-6 rounded-full object-cover">`;
+
+                // Build new comment HTML
                 newComment.innerHTML = `
-                    <p class="font-semibold text-lg">
+                    <p class="font-semibold text-lg flex items-center gap-2">
+                        ${profileImg}
                         <a href="/profiles/${data.comment.profile_id}" class="text-blue-600 hover:underline">
                             ${data.comment.profile_name}
                         </a>
@@ -232,7 +238,8 @@ document.addEventListener('DOMContentLoaded', function () {
                     </div>
                 `;
 
-                commentsList.prepend(newComment); // Add new comment at the top
+
+                commentsList.append(newComment); // Add new comment at the bottom
                 document.getElementById('comment-content').value = ''; // Clear textarea
             }
         })
