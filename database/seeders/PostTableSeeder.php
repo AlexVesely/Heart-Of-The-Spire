@@ -22,8 +22,8 @@ class PostTableSeeder extends Seeder
         $post1->cards()->attach(7); // attach card7 to post1
 
         $post2 = new Post;
-        $post2->title = "Ironclad is broken";
-        $post2->content = "I think it should be nerfed, just an opinion.";
+        $post2->title = "Ironclad is too strong";
+        $post2->content = "I think it should be changed, just an opinion.";
         $post2->profile_id = 2; // Connect profile2 to post2
         $post2->save();
 
@@ -43,7 +43,7 @@ class PostTableSeeder extends Seeder
 
         $post5 = new Post;
         $post5->title = "Which card should i choose between these two?";
-        $post5->content = "This is a critical time to choose a card!!!";
+        $post5->content = "This is a critical time to choose a card!!!!";
         $post5->profile_id = 4; // Connect profile4 to post5
         $post5->save();
         $post5->cards()->attach(3); // attach card3 to post5
